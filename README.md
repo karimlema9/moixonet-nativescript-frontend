@@ -308,3 +308,4 @@ Cal executar l'emulador des de la seva carpeta per un error recent (see Stackove
 
 - https://stackoverflow.com/questions/42554337/cannot-launch-avd-in-emulatorqt-library-not-found
 # moixonet-nativescript-frontend
+# moixonet-nativescript-frontend
