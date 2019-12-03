@@ -1,0 +1,324 @@
+{
+  "stats": {
+    "suites": 2,
+    "tests": 3,
+    "passes": 0,
+    "pending": 0,
+    "failures": 3,
+    "start": "2019-11-22T14:43:37.149Z",
+    "end": "2019-11-22T14:44:40.077Z",
+    "duration": 62928,
+    "testsRegistered": 3,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "d2f51e3a-2ef9-480f-b622-38e374e4080d",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [
+        {
+          "title": "\"before all\" hook: start server",
+          "fullTitle": "\"before all\" hook: start server",
+          "timedOut": false,
+          "duration": 7911,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": "[\n  \"on_server_started\",\n  \"./on_server_started.png\"\n]",
+          "code": "nsAppium.nsCapabilities.testReporter.context = this;\nawait nsAppium.startServer();",
+          "err": {},
+          "uuid": "fbe6eaab-3c01-4d5e-9afb-29c0d2bbba3f",
+          "parentUUID": "d2f51e3a-2ef9-480f-b622-38e374e4080d",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "afterHooks": [
+        {
+          "title": "\"after all\" hook: stop appium server",
+          "fullTitle": "\"after all\" hook: stop appium server",
+          "timedOut": false,
+          "duration": 1908,
+          "state": null,
+          "speed": null,
+          "pass": false,
+          "fail": false,
+          "pending": false,
+          "context": null,
+          "code": "await nsAppium.stopServer();",
+          "err": {},
+          "uuid": "f4ac05ef-63b4-4c88-b4ec-1f9d9900c9f3",
+          "parentUUID": "d2f51e3a-2ef9-480f-b622-38e374e4080d",
+          "isHook": true,
+          "skipped": false
+        }
+      ],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "e964cb2b-c5dc-4268-aa59-c8f54c646330",
+          "title": "home",
+          "fullFile": "/home/alumne/Code/karim/moixonet-nativescript-frontend/e2e/home.spec.js",
+          "file": "/e2e/home.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook",
+              "fullTitle": "home \"before all\" hook",
+              "timedOut": false,
+              "duration": 16945,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": "[\n  \"appium_driver_started\",\n  \"./appium_driver_started.png\"\n]",
+              "code": "nsAppium.nsCapabilities.testReporter.context = this\ndriver = await nsAppium.createDriver()",
+              "err": {},
+              "uuid": "1aa6a21a-d8ec-4bc1-8b9c-89f88544a2d9",
+              "parentUUID": "e964cb2b-c5dc-4268-aa59-c8f54c646330",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook",
+              "fullTitle": "home \"after all\" hook",
+              "timedOut": false,
+              "duration": 1586,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": "[\n  \"appium_driver_quit\",\n  \"./appium_driver_quit.png\"\n]",
+              "code": "await driver.quit()\nconsole.log('Quit driver!')",
+              "err": {},
+              "uuid": "583ef5ff-e979-4f6c-b318-1e3f6dad019f",
+              "parentUUID": "e964cb2b-c5dc-4268-aa59-c8f54c646330",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook",
+              "fullTitle": "home \"after each\" hook",
+              "timedOut": false,
+              "duration": 118,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === 'failed') {\n  await driver.logTestArtifacts(this.currentTest.title)\n}",
+              "err": {},
+              "uuid": "31868edd-5a95-4f32-b849-c9ea19e7f10e",
+              "parentUUID": "e964cb2b-c5dc-4268-aa59-c8f54c646330",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "compare screen",
+              "fullTitle": "home compare screen",
+              "timedOut": false,
+              "duration": 5156,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"home-screen_actual\",\n  \"./home-screen_actual.png\",\n  \"compare_screen\",\n  \"./compare_screen.png\"\n]",
+              "code": "assert.isTrue(await driver.compareScreen('home-screen'))",
+              "err": {
+                "message": "AssertionError: expected false to be true",
+                "estack": "AssertionError: expected false to be true\n    at Context.it (e2e/home.spec.js:26:12)\n    at process._tickCallback (internal/process/next_tick.js:68:7)",
+                "diff": "- false\n+ true\n"
+              },
+              "uuid": "3feadda6-9a1c-46f2-bab1-6ee4fd7ef3d6",
+              "parentUUID": "e964cb2b-c5dc-4268-aa59-c8f54c646330",
+              "isHook": false,
+              "skipped": false
+            },
+            {
+              "title": "show 'Els meus canals' on action bar title",
+              "fullTitle": "home show 'Els meus canals' on action bar title",
+              "timedOut": false,
+              "duration": 5669,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"action_bar_label1_actual\",\n  \"./action_bar_label1_actual.png\",\n  \"show_'Els_meus_canals'_on_action_bar_title\",\n  \"./show_'Els_meus_canals'_on_action_bar_title.png\"\n]",
+              "code": "const label = await driver.findElementByText('Els meus canals', 'contains')\nassert.isTrue(await label.isDisplayed())\nassert.isTrue(await driver.compareElement(label, 'action_bar_label1'))",
+              "err": {
+                "message": "AssertionError: expected false to be true",
+                "estack": "AssertionError: expected false to be true\n    at Context.it (e2e/home.spec.js:32:12)\n    at process._tickCallback (internal/process/next_tick.js:68:7)",
+                "diff": "- false\n+ true\n"
+              },
+              "uuid": "8dd520da-64c1-4dc6-af7d-468fbe4d8990",
+              "parentUUID": "e964cb2b-c5dc-4268-aa59-c8f54c646330",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "3feadda6-9a1c-46f2-bab1-6ee4fd7ef3d6",
+            "8dd520da-64c1-4dc6-af7d-468fbe4d8990"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 10825,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 999999
+        },
+        {
+          "uuid": "3db8f8d3-0be5-4500-8a1a-556f8365fdda",
+          "title": "settings",
+          "fullFile": "/home/alumne/Code/karim/moixonet-nativescript-frontend/e2e/settings.spec.js",
+          "file": "/e2e/settings.spec.js",
+          "beforeHooks": [
+            {
+              "title": "\"before all\" hook",
+              "fullTitle": "settings \"before all\" hook",
+              "timedOut": false,
+              "duration": 15847,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "nsAppium.nsCapabilities.testReporter.context = this\ndriver = await nsAppium.createDriver()",
+              "err": {},
+              "uuid": "e1dfe707-4131-49ab-95c2-14014cb1918d",
+              "parentUUID": "3db8f8d3-0be5-4500-8a1a-556f8365fdda",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "afterHooks": [
+            {
+              "title": "\"after all\" hook",
+              "fullTitle": "settings \"after all\" hook",
+              "timedOut": false,
+              "duration": 1225,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": "[\n  \"appium_driver_quit\",\n  \"./appium_driver_quit.png\",\n  \"on_server_stopped\",\n  \"./on_server_stopped.png\"\n]",
+              "code": "await driver.quit()\nconsole.log('Quit driver!')",
+              "err": {},
+              "uuid": "2a339648-9859-4bad-8db4-02d1947ad0cb",
+              "parentUUID": "3db8f8d3-0be5-4500-8a1a-556f8365fdda",
+              "isHook": true,
+              "skipped": false
+            },
+            {
+              "title": "\"after each\" hook",
+              "fullTitle": "settings \"after each\" hook",
+              "timedOut": false,
+              "duration": 361,
+              "state": null,
+              "speed": null,
+              "pass": false,
+              "fail": false,
+              "pending": false,
+              "context": null,
+              "code": "if (this.currentTest.state === 'failed') {\n  await driver.logTestArtifacts(this.currentTest.title)\n}",
+              "err": {},
+              "uuid": "20bee6c7-881e-461c-8b19-016555b29711",
+              "parentUUID": "3db8f8d3-0be5-4500-8a1a-556f8365fdda",
+              "isHook": true,
+              "skipped": false
+            }
+          ],
+          "tests": [
+            {
+              "title": "Can navigate to settings",
+              "fullTitle": "settings Can navigate to settings",
+              "timedOut": false,
+              "duration": 5963,
+              "state": "failed",
+              "speed": null,
+              "pass": false,
+              "fail": true,
+              "pending": false,
+              "context": "[\n  \"Can_navigate_to_settings\",\n  \"./Can_navigate_to_settings.png\"\n]",
+              "code": "const hamburguerIcon = await driver.findElementByAccessibilityId('hamburguer_icon')\nhamburguerIcon.click()\nconst navLinkSettings = await driver.findElementByText('Settings', 'contains')\nawait navLinkSettings.click()\n// ASSERT SHOW HOME\nassert.isTrue(await driver.compareScreen('settings-screen'))",
+              "err": {
+                "message": "Error: [waitForElementByXPath(\"//*[contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'settings') or contains(translate(@resource-id,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'settings') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'settings')]\",5000)] Element condition wasn't satisfied!",
+                "estack": "Error: [waitForElementByXPath(\"//*[contains(translate(@content-desc,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'settings') or contains(translate(@resource-id,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'settings') or contains(translate(@text,'ABCDEFGHIJKLMNOPQRSTUVWXYZ','abcdefghijklmnopqrstuvwxyz'),'settings')]\",5000)] Element condition wasn't satisfied!\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/lib/commands.js:979:12\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/lib/commands.js:884:11\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/lib/commands.js:966:13\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/node_modules/async/dist/async.js:3888:9\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/node_modules/async/dist/async.js:473:16\n    at replenish (node_modules/wd/node_modules/async/dist/async.js:1006:25)\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/node_modules/async/dist/async.js:1016:9\n    at eachOfLimit (node_modules/wd/node_modules/async/dist/async.js:1041:24)\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/node_modules/async/dist/async.js:1046:16\n    at _parallel (node_modules/wd/node_modules/async/dist/async.js:3879:5)\n    at Object.series (node_modules/wd/node_modules/async/dist/async.js:4735:5)\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/lib/commands.js:964:15\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/wd/lib/promise-webdriver.js:52:11\n    at _fulfilled (node_modules/q/q.js:854:54)\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/q/q.js:883:30\n    at Promise.promise.promiseDispatch (node_modules/q/q.js:816:13)\n    at /home/alumne/Code/karim/moixonet-nativescript-frontend/node_modules/q/q.js:624:44\n    at runSingle (node_modules/q/q.js:137:13)\n    at flush (node_modules/q/q.js:125:13)\n    at process._tickCallback (internal/process/next_tick.js:61:11)",
+                "diff": null
+              },
+              "uuid": "e96db327-6471-42bb-8f08-d023e7813e91",
+              "parentUUID": "3db8f8d3-0be5-4500-8a1a-556f8365fdda",
+              "isHook": false,
+              "skipped": false
+            }
+          ],
+          "suites": [],
+          "passes": [],
+          "failures": [
+            "e96db327-6471-42bb-8f08-d023e7813e91"
+          ],
+          "pending": [],
+          "skipped": [],
+          "duration": 5963,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 999999
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 999999
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "6.2.2"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": true,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false
+      },
+      "version": "4.1.0"
+    },
+    "marge": {
+      "options": {
+        "quiet": "true",
+        "html": "true",
+        "inline": "true",
+        "autoOpen": "true"
+      },
+      "version": "4.0.1"
+    }
+  }
+}
