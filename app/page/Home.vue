@@ -1,4 +1,9 @@
-<template>
+<!--suppress HtmlUnknownTag -->
+<template
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://schemas.android.com/apk/res/android "
+>
   <Page class="page">
     <ActionBar class="action-bar">
       <!--
@@ -29,20 +34,23 @@
     </ActionBar>
 
     <GridLayout class="page__content">
-      <Label
-        automation-text="channels_placeholder_image"
-        class="page__content-icon fas"
-        text.decode="&#xf015;"
-      />
+      <Label class="page__content-icon fas" text.decode="&#xf015;" />
       <Label class="page__content-placeholder" :text="message" />
-      <Button automation-text="new_channel_button" text="Subscriute" @tap="Channelsearch" />
+      <Button automation-text="new_channel_button" text="Nou canal" @tap="newChannel" />
+      <Fab
+        row="1"
+        icon="res://baseline_add_white_24"
+        ripple-color="#f1f1f1"
+        class="fab-button"
+        @tap="newChannel"
+      />
     </GridLayout>
   </Page>
 </template>
 
 <script>
 import SelectedPageService from '../shared/selected-page-service'
-import Channelsearch from './ChannelSearch'
+import NewChannel from './NewChannel'
 import * as utils from '~/shared/utils'
 
 export default {
@@ -58,18 +66,25 @@ export default {
     onDrawerButtonTap () {
       utils.showDrawer()
     },
-    Channelsearch () {
-      console.log('LOG!!!!!!!!!1')
-      this.$navigateTo(Channelsearch)
+    newChannel () {
+      this.$navigateTo(NewChannel)
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-    // Start custom common variables
-    @import '~@nativescript/theme/scss/variables/blue';
-    // End custom common variables
+  // Start custom common variables
+  @import '~@nativescript/theme/scss/variables/blue';
+  // End custom common variables
 
-    // Custom styles
+  // Custom styles
+  .fab-button {
+    height: 70;
+    width: 70; /// this is required on iOS - Android does not require width so you might need to adjust styles
+    margin: 15;
+    background-color: #ff4081;
+    horizontal-align: right;
+    vertical-align: bottom;
+  }
 </style>

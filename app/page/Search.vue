@@ -17,11 +17,11 @@
         ios.position="left"
         @tap="onDrawerButtonTap"
       />
-      <Label class="action-bar-title" text="Featured" />
+      <Label class="action-bar-title" text="Search" />
     </ActionBar>
 
     <GridLayout class="page__content">
-      <Label class="page__content-icon fas" text.decode="&#xf005;" />
+      <Label class="page__content-icon fas" text.decode="&#xf002;" />
       <Label class="page__content-placeholder" :text="message" />
     </GridLayout>
   </Page>
@@ -38,7 +38,7 @@ export default {
     }
   },
   mounted () {
-    SelectedPageService.getInstance().updateSelectedPage('Featured')
+    SelectedPageService.getInstance().updateSelectedPage('Search')
   },
   methods: {
     onDrawerButtonTap () {
@@ -50,7 +50,7 @@ export default {
 
 <style scoped lang="scss">
     // Start custom common variables
-    @import '~@nativescript/theme/scss/variables/blue';
+    @import '../../node_modules/@nativescript/theme/scss/variables/blue';
     // End custom common variables
 
     // Custom styles

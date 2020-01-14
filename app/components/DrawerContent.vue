@@ -56,13 +56,13 @@
 /* eslint-disable vue/no-unused-components */
 
 import { mapGetters } from 'vuex'
-import Home from './Home'
-import Browse from './Browse'
-import Featured from './Featured'
-import Search from './Search'
-import Settings from './Settings'
-import ChannelsList from './ChannelsList'
-import Channel from './Channel'
+import Home from '../page/Home'
+import Browse from '../page/Browse'
+import Featured from '../page/Featured'
+import Search from '../page/Search'
+import Settings from '../page/Settings'
+import ChannelsList from '../page/ChannelsList'
+import Channel from '../page/Channel'
 import * as utils from '~/shared/utils'
 import SelectedPageService from '~/shared/selected-page-service'
 // import url from '@/utils/url'
@@ -137,7 +137,7 @@ export default {
 
 <style scoped lang="scss">
   // Start custom common variables
-  @import '~@nativescript/theme/scss/variables/blue';
+  @import '../../node_modules/@nativescript/theme/scss/variables/blue';
   // End custom common variables
 
   // Custom styles
