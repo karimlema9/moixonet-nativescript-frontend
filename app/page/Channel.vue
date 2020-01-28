@@ -1,4 +1,8 @@
-<template>
+<template
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://schemas.android.com/apk/res/android "
+>
   <Page class="page">
     <ActionBar class="action-bar">
       <NavigationButton text="Go Back" android-system-icon="ic_menu_back" @tap="$navigateBack" />
@@ -48,7 +52,7 @@ export default {
 
 <style scoped lang="scss">
   // Start custom common variables
-  @import '../../node_modules/@nativescript/theme/scss/variables/blue';
+  @import '~@nativescript/theme/scss/variables/ruby';
   // End custom common variables
 
   // Custom styles

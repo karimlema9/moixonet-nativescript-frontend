@@ -1,0 +1,20 @@
+[
+  {
+    "id": 1,
+    "name": "Canal 1",
+    "messages_nmber": 23,
+    "created_at": "fa 2 minuts"
+  },
+  {
+    "id": 2,
+    "name": "Canal 2",
+    "messages_nmber": 13,
+    "created_at": "fa 4 hores"
+  },
+  {
+    "id": 3,
+    "name": "Canal 3",
+    "messages_nmber": 3,
+    "created_at": "fa 6 dies"
+  }
+]
