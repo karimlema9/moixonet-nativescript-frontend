@@ -1,3 +1,21 @@
+# TASQUES DIJOUS 30 GENER 2020
+- [ ] Millores CSS
+  - Llista de canals:
+    - Lletra més gran
+    - Més amplitud de la icona/imatge
+    - En comptes de botons -> icones/botó
+- [ ] Passar informació entre pàgines
+  - [ ] Master/Detail de canals
+    - [ ] Al fer click a un canal a la llista de canals (master) passar el canal al detail
+    - $navigateTo(Component, options)
+      - options: 
+        - props: Propietats del component Vue que representa una nova pàgina
+- [ ] LAYOUTS de pages
+  - [ ] Evitar codi WET Copy/paste -> ActivityIndicator, ActionBar etc són iguals a cada pàgina
+- [X] Utilitzar tècnica diferent que backend -> en comptes de loading a cada button/component posar un loadinggeneral
+  - [ ] Interceptar totes les peticions axios amb un Middleware/Interceptors axios per activar el loading
+    - https://github.com/axios/axios#interceptors
+
 # Guia 22 novembre
 
 Repàs:
@@ -309,3 +327,4 @@ Cal executar l'emulador des de la seva carpeta per un error recent (see Stackove
 - https://stackoverflow.com/questions/42554337/cannot-launch-avd-in-emulatorqt-library-not-found
 # moixonet-nativescript-frontend
 # moixonet-nativescript-frontend
+

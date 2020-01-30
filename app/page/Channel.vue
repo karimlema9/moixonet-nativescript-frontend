@@ -5,7 +5,8 @@
 >
   <Page class="page">
     <ActionBar class="action-bar">
-      <NavigationButton text="Go Back" android-system-icon="ic_menu_back" @tap="$navigateBack" />
+      <NavigationButton ios:visibility="collapsed" icon="res://menu" @tap="onDrawerButtonTap" />
+      <!--      <NavigationButton text="Go Back" android-system-icon="ic_menu_back" @tap="$navigateBack" />-->
       <ActionItem
         icon="res://menu"
         text="hamburguer_icon"
@@ -34,6 +35,8 @@
 </template>
 
 <script>
+import * as utils from '~/shared/utils'
+
 export default {
   name: 'Channel',
   data () {
@@ -45,6 +48,9 @@ export default {
     indexChange (args) {
       const newIndex = args.value
       console.log('Current tab index: ' + newIndex)
+    },
+    onDrawerButtonTap () {
+      utils.showDrawer()
     }
   }
 }

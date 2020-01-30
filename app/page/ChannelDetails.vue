@@ -1,6 +1,7 @@
 <template lang="html">
   <Page class="page">
     <ActionBar class="action-bar">
+      <NavigationButton ios:visibility="collapsed" icon="res://menu" @tap="onDrawerButtonTap" />
       <NavigationButton
         text="hamburguer_icon"
         ios:visibility="collapsed"

@@ -1,10 +1,10 @@
 <template>
-  <app-user-channels :channels="channels" @leave="leave" @selected="selected"/>
+  <app-user-channels :channels="channels" @leave="leave" @selected="selected" />
 </template>
 
 <script>
+import ChannelDetails from '../page/ChannelDetails'
 import AppUserChannels from './AppUserChannels'
-
 export default {
   name: 'UserChannels',
   components: {
@@ -25,10 +25,16 @@ export default {
 
       // TODO -> Si es confirma vol sortir del canal eliminar de l'storage
     },
-    selected () {
-      // TODO NAVIGATE TO DETAILS PAGE
-      alert('Selected channel').then(() => {
-        console.log('Dialog closed')
+    selected (args) {
+      console.log('SELECTED!')
+      console.log('args:')
+      console.log(args)
+      this.$navigateTo(ChannelDetails, {
+        props: {
+          channel: {
+            name: 'Channel X'
+          }
+        }
       })
     }
   }
