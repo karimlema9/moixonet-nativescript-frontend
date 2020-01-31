@@ -51,7 +51,7 @@
       </TabContentItem>
 
       <TabContentItem>
-        <channel-info-tab :channel="channel"/>
+        <channel-info-tab :channel="channel" />
       </TabContentItem>
 
       <TabContentItem>

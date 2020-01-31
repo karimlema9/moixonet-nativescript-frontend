@@ -6,7 +6,6 @@
 >
   <Page class="page">
     <ActionBar class="action-bar">
-
       <NavigationButton
         text="hamburguer_icon"
         ios:visibility="collapsed"
@@ -27,7 +26,7 @@
     <GridLayout class="page__content">
       <template v-if="channels.length > 0">
         <user-channels :channels="channels" />
-        <Button class="page__content-cta c-bg-ruby" automation-text="new_channel_button" text="Eliminar tots els canals " @tap="removeAll" />
+        <Button class="page__content-cta -primary" automation-text="new_channel_button" text="Eliminar tots els canals " @tap="removeAll" />
       </template>
       <template v-else>
         <Label class="page__content-icon fas" text.decode="&#xf2bb;" />
@@ -42,7 +41,7 @@
       <Fab
         row="1"
         icon="res://baseline_add_white_24"
-        ripple-color="#f1f1f1"
+        ripple-color="#F1C40F"
         class="fab-button"
         @tap="newChannel"
       />
@@ -110,8 +109,25 @@ export default {
     height: 70;
     width: 70; /// this is required on iOS - Android does not require width so you might need to adjust styles
     margin: 15;
-    background-color: #ff4081;
+    background-color: #F1C40F;
     horizontal-align: right;
     vertical-align: bottom;
   }
+
+  /*@media screen and (max-width: 480px) {*/
+  /*  grid-layout{*/
+  /*    font-size: 10*/
+  /*  }*/
+  /*}*/
+
+    grid-layout{
+      font-size: 20
+    }
+
+  /*@media screen and (max-width: 720px) {*/
+  /*  grid-layout{*/
+  /*    font-size: 25*/
+  /*  }*/
+  /*}*/
+
 </style>

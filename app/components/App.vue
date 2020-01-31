@@ -27,4 +27,5 @@ export default {
     // End custom common variables
 
     // Custom styles
+
 </style>

@@ -7,6 +7,12 @@
 >
   <Page class="page">
     <ActionBar class="action-bar">
+      <NavigationButton
+        text="hamburguer_icon"
+        ios:visibility="collapsed"
+        icon="res://menu"
+        @tap="onDrawerButtonTap"
+      />
       <NavigationButton text="Go Back" android-system-icon="ic_menu_back" @tap="$navigateBack" />
       <ActionItem
         icon="res://menu"
@@ -48,6 +54,7 @@
 </template>
 
 <script>
+import * as utils from '~/shared/utils'
 
 export default {
   name: 'NewChannel',
@@ -83,6 +90,9 @@ export default {
     }
   },
   methods: {
+    onDrawerButtonTap () {
+      utils.showDrawer()
+    },
     onPullToRefreshInitiated ({ object }) {
       console.log('REFRESHING!!!!!!!!...')
       // in order to avoid race conditions (only on iOS),
@@ -124,5 +134,8 @@ export default {
   @import '~@nativescript/theme/scss/variables/ruby';
   // End custom common variables
 
-  // Custom styles
+  /*// Custom styles*/
+  /*grid-layout{*/
+  /*  font-size: 25*/
+  /*}*/
 </style>

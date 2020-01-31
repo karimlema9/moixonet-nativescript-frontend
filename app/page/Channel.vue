@@ -61,5 +61,8 @@ export default {
   @import '~@nativescript/theme/scss/variables/ruby';
   // End custom common variables
 
-  // Custom styles
+  /*// Custom styles*/
+  /*grid-layout{*/
+  /*  font-size: 25*/
+  /*}*/
 </style>

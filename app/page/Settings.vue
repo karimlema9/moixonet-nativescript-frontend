@@ -20,10 +20,17 @@
       <Label class="action-bar-title" text="Settings" />
     </ActionBar>
 
-    <GridLayout class="page__content">
-      <Label class="page__content-icon fas" text.decode="&#xf013;" />
-      <Label class="page__content-placeholder" :text="message" />
-    </GridLayout>
+    <StackLayout width="auto" height="auto">
+      <Label text="Dark Mode" />
+      <Switch checked="true" -checked-change-="onCheckedChange($event)" />
+    </StackLayout>
+
+<!--        <GridLayout class="page__content">-->
+<!--    &lt;!&ndash;      <Label class="page__content-icon fas" text.decode="&#xf013;" />&ndash;&gt;-->
+<!--    &lt;!&ndash;      <Label class="page__content-placeholder" :text="message" />&ndash;&gt;-->
+<!--          <Label text="Label 4" row="1" col="1" backgroundColor="yellow"/>-->
+<!--          <Switch checked="true" -checked-change-="onCheckedChange($event)"/>-->
+<!--        </GridLayout>-->
   </Page>
 </template>
 

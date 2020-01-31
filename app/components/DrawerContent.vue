@@ -177,10 +177,22 @@ export default {
     },
     login () {
       console.log('TODO LOGIN')
+      const dialogs = require('tns-core-modules/ui/dialogs')
+      dialogs.login({
+        title: 'Login',
+        message: 'Possa el teu e-mail i contrasenya.',
+        okButtonText: 'Your button text',
+        cancelButtonText: 'Cancela',
+        // neutralButtonText: 'Neutral button text',
+        userName: 'exemple@exemple.com',
+        password: ''
+      }).then(function (r) {
+        console.log('Dialog result: ' + r.result + ', user: ' + r.userName + ', pwd: ' + r.password)
+      })
     },
     register () {
       // alert('HEY QUE PAIXA!!!')
-      url.open('https://moixonet.acacha.scool.cat/register')
+      url.open('https://moixonet.karimlema9.scool.cat/register')
       // url.open('http://www.google.com')
       // utils.openUrl('http://moixonet-backend.test/register')
       // function pageLoaded (args) {
@@ -204,4 +216,7 @@ export default {
   // End custom common variables
 
   // Custom styles
+  label{
+    font-size: 19
+  }
 </style>
