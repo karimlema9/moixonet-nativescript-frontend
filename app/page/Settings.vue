@@ -65,10 +65,36 @@
 
 <template>
   <PageLayout title="Settings" name="Settings">
-    <GridLayout class="page__content">
-      <Label class="page__content-icon fas" text.decode="&#xf013;" />
-      <Label class="page__content-placeholder" :text="message" />
-    </GridLayout>
+    <!--    - [ ] Activar/desactivar notificacions-->
+    <!--    - [ ] Silenci notificacions-->
+    <!--    - [ ] Vibració-->
+    <!--    - [ ] Poder escollir só de la notificació-->
+    <!--    - [ ] Enviar notificació de prova/comprovar notificacions-->
+    <StackLayout>
+      <label text="General" class="font-weight-bold" />
+      <GridLayout rows="auto" columns="auto, *, auto">
+        <StackLayout col="0">
+          <Label text="Dark Mode" />
+        </StackLayout>
+        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+      </GridLayout>
+      <!--      asdasd-->
+      <label text="Notificacions" class="font-weight-bold" />
+      <GridLayout rows="auto" columns="auto, *, auto">
+        <StackLayout row="0" col="0">
+          <Label text="Activat Notificacions" />
+        </StackLayout>
+        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+        <!--      asdasdasd-->
+      </GridLayout>
+        <label text="Quant a" class="font-weight-bold" />
+        <GridLayout rows="auto" columns="auto, *, auto">
+          <StackLayout col="0">
+            <Label text="Info" />
+          </StackLayout>
+          <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+        </GridLayout>
+    </StackLayout>
   </PageLayout>
 </template>
 

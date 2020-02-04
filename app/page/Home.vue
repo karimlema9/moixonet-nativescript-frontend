@@ -134,7 +134,7 @@
 
 <!--suppress HtmlUnknownTag -->
 <template>
-  <PageLayout title="Els meus canals" name="Home">
+  <PageLayout title="Els meus canals" name="Home" class="font-weight-bold">
     <GridLayout class="page__content">
       <template v-if="channels.length > 0">
         <user-channels :channels="channels" />
