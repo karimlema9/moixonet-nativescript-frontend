@@ -1,25 +1,131 @@
-<!--suppress HtmlUnknownTag, XmlUnboundNsPrefix -->
+<!--&lt;!&ndash;suppress HtmlUnknownTag, XmlUnboundNsPrefix &ndash;&gt;-->
+<!--<template>-->
+<!--  <Page>-->
+<!--    <ActionBar :title="title">-->
+<!--      &lt;!&ndash;-->
+<!--            Use the NavigationButton as a side-drawer button in Android-->
+<!--            because ActionItems are shown on the right side of the ActionBar-->
+<!--            &ndash;&gt;-->
+<!--      <NavigationButton ios:visibility="collapsed" icon="res://menu" @tap="showDrawer" />-->
+<!--      &lt;!&ndash;-->
+<!--            Use the ActionItem for IOS with position set to left. Using the-->
+<!--            NavigationButton as a side-drawer button in iOS is not possible,-->
+<!--            because its function is to always navigate back in the application.-->
+<!--            &ndash;&gt;-->
+<!--      <ActionItem-->
+<!--        icon="res://menu"-->
+<!--        android:visibility="collapsed"-->
+<!--        ios.position="left"-->
+<!--        @tap="showDrawer"-->
+<!--      />-->
+<!--      <Label class="action-bar-title" text="Browse" />-->
+<!--    </ActionBar>-->
+<!--    <StackLayout ios:background-color="#CDCECE" padding="5">-->
+<!--      <Label text="Select country" />-->
+<!--      <RadAutoCompleteTextView-->
+<!--        ref="autocomplete"-->
+<!--        :completion-mode="completionMode"-->
+<!--        :suggest-mode="suggestMode"-->
+<!--        :display-mode="displayMode"-->
+<!--        :items="dataItems"-->
+<!--      />-->
+<!--      <Label text="SUGGEST MODES" margin-top="5" />-->
+<!--      <StackLayout orientation="horizontal">-->
+<!--        <Button margin="5" text="Suggest" @tap="onSuggestSelected" />-->
+<!--        <Button margin="5" text="Append" @tap="onAppendSelected" />-->
+<!--        <Button margin="5" text="Suggest-Append" @tap="onSuggestAppendSelected" />-->
+<!--      </StackLayout>-->
+<!--      <Label text="COMPLETION MODES" />-->
+<!--      <StackLayout orientation="horizontal">-->
+<!--        <Button margin="5" text="StartsWith" @tap="onStartsWithSelected" />-->
+<!--        <Button margin="5" text="Contains" @tap="onContainsSelected" />-->
+<!--      </StackLayout>-->
+<!--      <Label text="DISPLAY MODES" />-->
+<!--      <StackLayout orientation="horizontal">-->
+<!--        <Button margin="5" text="Plain" @tap="onPlainSelected" />-->
+<!--        <Button margin="5" text="Tokens" @tap="onTokensSelected" />-->
+<!--      </StackLayout>-->
+<!--    </StackLayout>-->
+<!--  </Page>-->
+<!--</template>-->
+
+<!--<script>-->
+<!--import { AutoCompleteCompletionMode, AutoCompleteDisplayMode, AutoCompleteSuggestMode } from 'nativescript-ui-autocomplete'-->
+<!--import { ObservableArray } from 'tns-core-modules/data/observable-array'-->
+<!--import { getCountry, getCountriesCount } from '../data/countries'-->
+<!--import * as utils from '~/shared/utils'-->
+
+<!--const description = 'Exemple autocomplete'-->
+
+<!--export default {-->
+<!--  name: 'AutocompleteEx',-->
+<!--  description,-->
+<!--  data () {-->
+<!--    const dataItems = new ObservableArray()-->
+
+<!--    for (let i = 0; i < getCountriesCount(); i++) {-->
+<!--      dataItems.push(getCountry(i))-->
+<!--    }-->
+<!--    return {-->
+<!--      title: description,-->
+<!--      dataItems,-->
+<!--      displayMode: AutoCompleteDisplayMode.Tokens,-->
+<!--      suggestMode: AutoCompleteSuggestMode.Suggest,-->
+<!--      completionMode: AutoCompleteCompletionMode.Contains-->
+<!--    }-->
+<!--  },-->
+<!--  methods: {-->
+<!--    showDrawer () {-->
+<!--      utils.showDrawer()-->
+<!--    },-->
+<!--    // onNavigationButtonTap () {-->
+<!--    //   Frame.topmost().goBack()-->
+<!--    // },-->
+<!--    onSuggestSelected (args) {-->
+<!--      console.log('onSuggestSelected!')-->
+<!--      this.suggestMode = AutoCompleteSuggestMode.Suggest-->
+<!--      this.$refs.autocomplete.resetAutoComplete()-->
+<!--    },-->
+<!--    onAppendSelected (args) {-->
+<!--      console.log('onAppendSelected!')-->
+<!--      this.suggestMode = AutoCompleteSuggestMode.Append-->
+<!--      this.completionMode = AutoCompleteCompletionMode.StartsWith-->
+<!--      this.$refs.autocomplete.resetAutoComplete()-->
+<!--    },-->
+<!--    onSuggestAppendSelected (args) {-->
+<!--      console.log('onSuggestAppendSelected')-->
+<!--      this.suggestMode = AutoCompleteSuggestMode.SuggestAppend-->
+<!--      this.completionMode = AutoCompleteCompletionMode.StartsWith-->
+<!--      this.$refs.autocomplete.resetAutoComplete()-->
+<!--    },-->
+<!--    onStartsWithSelected (args) {-->
+<!--      console.log('onStartsWithSelected')-->
+<!--      this.completionMode = AutoCompleteCompletionMode.StartsWith-->
+<!--      this.$refs.autocomplete.resetAutoComplete()-->
+<!--    },-->
+<!--    onContainsSelected (args) {-->
+<!--      console.log('onContainsSelected')-->
+<!--      this.completionMode = AutoCompleteCompletionMode.Contains-->
+<!--      this.suggestMode = AutoCompleteSuggestMode.Suggest-->
+<!--      this.$refs.autocomplete.resetAutoComplete()-->
+<!--    },-->
+<!--    onPlainSelected (args) {-->
+<!--      console.log('onPlainSelected')-->
+<!--      this.displayMode = AutoCompleteDisplayMode.Plain-->
+<!--      this.$refs.autocomplete.resetAutoComplete()-->
+<!--    },-->
+<!--    onTokensSelected (args) {-->
+<!--      console.log('onTokensSelected')-->
+<!--      this.displayMode = AutoCompleteDisplayMode.Tokens-->
+<!--      this.$refs.autocomplete.resetAutoComplete()-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
+
+<!--suppress HtmlUnknownTag, XmlUnboundNsPrefix, HtmlUnknownAttribute -->
 <template>
-  <Page>
-    <ActionBar :title="title">
-      <!--
-            Use the NavigationButton as a side-drawer button in Android
-            because ActionItems are shown on the right side of the ActionBar
-            -->
-      <NavigationButton ios:visibility="collapsed" icon="res://menu" @tap="showDrawer" />
-      <!--
-            Use the ActionItem for IOS with position set to left. Using the
-            NavigationButton as a side-drawer button in iOS is not possible,
-            because its function is to always navigate back in the application.
-            -->
-      <ActionItem
-        icon="res://menu"
-        android:visibility="collapsed"
-        ios.position="left"
-        @tap="showDrawer"
-      />
-      <Label class="action-bar-title" text="Browse" />
-    </ActionBar>
+  <PageLayout title="Exemple autocomplete" name="AutocompleteEx">
     <StackLayout ios:background-color="#CDCECE" padding="5">
       <Label text="Select country" />
       <RadAutoCompleteTextView
@@ -46,7 +152,7 @@
         <Button margin="5" text="Tokens" @tap="onTokensSelected" />
       </StackLayout>
     </StackLayout>
-  </Page>
+  </PageLayout>
 </template>
 
 <script>
@@ -81,40 +187,40 @@ export default {
     // onNavigationButtonTap () {
     //   Frame.topmost().goBack()
     // },
-    onSuggestSelected (args) {
+    onSuggestSelected () {
       console.log('onSuggestSelected!')
       this.suggestMode = AutoCompleteSuggestMode.Suggest
       this.$refs.autocomplete.resetAutoComplete()
     },
-    onAppendSelected (args) {
+    onAppendSelected () {
       console.log('onAppendSelected!')
       this.suggestMode = AutoCompleteSuggestMode.Append
       this.completionMode = AutoCompleteCompletionMode.StartsWith
       this.$refs.autocomplete.resetAutoComplete()
     },
-    onSuggestAppendSelected (args) {
+    onSuggestAppendSelected () {
       console.log('onSuggestAppendSelected')
       this.suggestMode = AutoCompleteSuggestMode.SuggestAppend
       this.completionMode = AutoCompleteCompletionMode.StartsWith
       this.$refs.autocomplete.resetAutoComplete()
     },
-    onStartsWithSelected (args) {
+    onStartsWithSelected () {
       console.log('onStartsWithSelected')
       this.completionMode = AutoCompleteCompletionMode.StartsWith
       this.$refs.autocomplete.resetAutoComplete()
     },
-    onContainsSelected (args) {
+    onContainsSelected () {
       console.log('onContainsSelected')
       this.completionMode = AutoCompleteCompletionMode.Contains
       this.suggestMode = AutoCompleteSuggestMode.Suggest
       this.$refs.autocomplete.resetAutoComplete()
     },
-    onPlainSelected (args) {
+    onPlainSelected () {
       console.log('onPlainSelected')
       this.displayMode = AutoCompleteDisplayMode.Plain
       this.$refs.autocomplete.resetAutoComplete()
     },
-    onTokensSelected (args) {
+    onTokensSelected () {
       console.log('onTokensSelected')
       this.displayMode = AutoCompleteDisplayMode.Tokens
       this.$refs.autocomplete.resetAutoComplete()

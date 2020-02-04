@@ -145,10 +145,6 @@ export default {
     }
   },
   computed: {
-    // ...mapGetters([
-    //   'loggedIn',
-    //   'user'
-    // ])
     loggedIn () {
       return this.$store.getters['auth/loggedIn']
     },
@@ -157,14 +153,11 @@ export default {
     }
   },
   mounted () {
-    console.log('MOUNTED!!!!!!!!!!!!!!')
-    console.log('AXIOS:')
     console.log(this.$axios)
     // console.log(this)
     // console.log(this.$store)
     console.log(this.$store.state.auth.loggedIn)
     console.log('LoggedIn:')
-    console.log(this.$store.getters['auth/loggedIn'])
     SelectedPageService.getInstance().selectedPage$
       .subscribe((selectedPage) => { this.selectedPage = selectedPage })
   },
