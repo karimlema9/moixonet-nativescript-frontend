@@ -65,45 +65,72 @@
 
 <template>
   <PageLayout title="Settings" name="Settings">
-    <!--    - [ ] Activar/desactivar notificacions-->
-    <!--    - [ ] Silenci notificacions-->
-    <!--    - [ ] Vibració-->
-    <!--    - [ ] Poder escollir só de la notificació-->
-    <!--    - [ ] Enviar notificació de prova/comprovar notificacions-->
-    <StackLayout>
-      <label text="General" class="font-weight-bold" />
-      <GridLayout rows="auto" columns="auto, *, auto">
-        <StackLayout col="0">
-          <Label text="Dark Mode" />
-        </StackLayout>
-        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-      </GridLayout>
-      <!--      asdasd-->
-      <label text="Notificacions" class="font-weight-bold" />
-      <GridLayout rows="auto" columns="auto, *, auto">
-        <StackLayout row="0" col="0">
-          <Label text="Activat Notificacions" />
-        </StackLayout>
-        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-        <!--      asdasdasd-->
-      </GridLayout>
-        <label text="Quant a" class="font-weight-bold" />
-        <GridLayout rows="auto" columns="auto, *, auto">
-          <StackLayout col="0">
-            <Label text="Info" />
-          </StackLayout>
+    <!--    <StackLayout>-->
+    <!--      <label text="General" class="font-weight-bold" />-->
+    <!--      <GridLayout rows="auto" columns="auto, *, auto">-->
+    <!--        <StackLayout col="0">-->
+    <!--          <Label text="Dark Mode" />-->
+    <!--        </StackLayout>-->
+    <!--        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
+    <!--      </GridLayout>-->
+    <!--      &lt;!&ndash;      asdasd&ndash;&gt;-->
+    <!--      <label text="Notificacions" class="font-weight-bold" />-->
+    <!--      <GridLayout rows="auto" columns="auto, *, auto">-->
+    <!--        <StackLayout row="0" col="0">-->
+    <!--          <Label text="Activat Notificacions" />-->
+    <!--        </StackLayout>-->
+    <!--        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
+    <!--        &lt;!&ndash;      asdasdasd&ndash;&gt;-->
+    <!--      </GridLayout>-->
+    <!--        <label text="Quant a" class="font-weight-bold" />-->
+    <!--        <GridLayout rows="auto" columns="auto, *, auto">-->
+    <!--          <StackLayout col="0">-->
+    <!--            <Label text="Info" />-->
+    <!--          </StackLayout>-->
+    <!--          <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
+    <!--        </GridLayout>-->
+
+    <ListView class="list-group" for="notif in notifications" style="height:1250px" @itemTap="onItemTap">
+      <v-template>
+        <FlexboxLayout flex-direction="row" class="list-group-item">
+          <Label :text="notif.name" class="list-group-item-heading" style="width: 60%" />
           <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-        </GridLayout>
-    </StackLayout>
+        </FlexboxLayout>
+      </v-template>
+    </ListView>
+
+    <!--    </StackLayout>-->
   </PageLayout>
 </template>
-
+<!--    - [ ] Activar/desactivar notificacions-->
+<!--    - [ ] Silenci notificacions-->
+<!--    - [ ] Vibració-->
+<!--    - [ ] Poder escollir só de la notificació-->
+<!--    - [ ] Enviar notificació de prova/comprovar notificacions-->
 <script>
 export default {
+  data () {
+    return {
+      notifications: [
+        { name: 'Activar' },
+        { name: 'Silenciar' },
+        { name: 'Vibració' },
+        { name: 'Só notificació' },
+        { name: 'Notificació de Prova' }
+      ]
+    }
+  },
+
   computed: {
     message () {
       return '<!-- Page content goes here -->'
     }
+  },
+  methods: {
+    onItemTap (args) {
+      console.log('Item with index: ' + args.index + ' tapped')
+    }
   }
+
 }
 </script>
