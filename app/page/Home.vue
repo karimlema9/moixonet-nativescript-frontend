@@ -138,7 +138,7 @@
     <GridLayout class="page__content">
       <template v-if="channels.length > 0">
         <user-channels :channels="channels" />
-        <Button class="page__content-cta c-bg-ruby" automation-text="new_channel_button" text="Eliminar tots els canals " @tap="removeAll" />
+        <Button class="page__content-cta c-bg-ruby c-white" automation-text="new_channel_button" text="Eliminar tots els canals " @tap="removeAll" />
       </template>
       <template v-else>
         <Label class="page__content-icon fas" text.decode="&#xf0c9;" />

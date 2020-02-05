@@ -65,58 +65,79 @@
 
 <template>
   <PageLayout title="Settings" name="Settings">
-    <!--    <StackLayout>-->
-    <!--      <label text="General" class="font-weight-bold" />-->
-    <!--      <GridLayout rows="auto" columns="auto, *, auto">-->
-    <!--        <StackLayout col="0">-->
-    <!--          <Label text="Dark Mode" />-->
-    <!--        </StackLayout>-->
-    <!--        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
-    <!--      </GridLayout>-->
-    <!--      &lt;!&ndash;      asdasd&ndash;&gt;-->
-    <!--      <label text="Notificacions" class="font-weight-bold" />-->
-    <!--      <GridLayout rows="auto" columns="auto, *, auto">-->
-    <!--        <StackLayout row="0" col="0">-->
-    <!--          <Label text="Activat Notificacions" />-->
-    <!--        </StackLayout>-->
-    <!--        <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
-    <!--        &lt;!&ndash;      asdasdasd&ndash;&gt;-->
-    <!--      </GridLayout>-->
-    <!--        <label text="Quant a" class="font-weight-bold" />-->
-    <!--        <GridLayout rows="auto" columns="auto, *, auto">-->
-    <!--          <StackLayout col="0">-->
-    <!--            <Label text="Info" />-->
-    <!--          </StackLayout>-->
-    <!--          <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
-    <!--        </GridLayout>-->
-
-    <ListView class="list-group" for="notif in notifications" style="height:1250px" @itemTap="onItemTap">
-      <v-template>
-        <FlexboxLayout flex-direction="row" class="list-group-item">
-          <Label :text="notif.name" class="list-group-item-heading" style="width: 60%" />
-          <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-        </FlexboxLayout>
-      </v-template>
-    </ListView>
-
+    <!--    <StackLayout orientation="vertical" background-color="lightgray">-->
+    <!--      <Label text="Label 1"/>-->
     <!--    </StackLayout>-->
+    <!--        <ListView class="list-group" for="sett in settings" style="height:1250px" @itemTap="onItemTap">-->
+    <!--          <v-template if="sett.group == 'not'">-->
+    <!--            <FlexboxLayout flex-direction="row" class="list-group-item">-->
+    <!--              <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />-->
+    <!--              <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
+    <!--            </FlexboxLayout>-->
+    <!--          </v-template>-->
+    <!--          <v-template if="sett.group == 'not'">-->
+    <!--            <FlexboxLayout flex-direction="row" class="list-group-item">-->
+    <!--              <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />-->
+    <!--              <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />-->
+    <!--            </FlexboxLayout>-->
+    <!--          </v-template>-->
+    <!--        </ListView>-->
+    <ScrollView>
+      <ListView for="sett in settings" class="list-group">
+        <v-template if="sett.camp == 'Notification'">
+          <label :text="sett.camp" class="font-weight-bold"/>
+        </v-template>
+        <v-template if="sett.grup == 'not'">
+          <GridLayout columns="1/4*, 3/4*">
+            <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
+            <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+          </GridLayout>
+        </v-template>
+        <v-template if="sett.camp == 'General'">
+          <label :text="sett.camp" class="font-weight-bold"/>
+        </v-template>
+        <v-template if="sett.grup == 'gen'">
+          <GridLayout columns="1/4*, 3/4*">
+            <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
+            <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+          </GridLayout>
+        </v-template>
+        <v-template if="sett.camp == 'About me'">
+          <label :text="sett.camp" class="font-weight-bold"/>
+        </v-template>
+        <v-template if="sett.grup == 'about'">
+          <GridLayout columns="1/4*, 3/4*">
+            <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
+            <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+          </GridLayout>
+        </v-template>
+      </ListView>
+    </ScrollView>
   </PageLayout>
 </template>
-<!--    - [ ] Activar/desactivar notificacions-->
-<!--    - [ ] Silenci notificacions-->
-<!--    - [ ] Vibració-->
-<!--    - [ ] Poder escollir só de la notificació-->
-<!--    - [ ] Enviar notificació de prova/comprovar notificacions-->
 <script>
 export default {
   data () {
     return {
-      notifications: [
-        { name: 'Activar' },
-        { name: 'Silenciar' },
-        { name: 'Vibració' },
-        { name: 'Só notificació' },
-        { name: 'Notificació de Prova' }
+      settings: [
+        { camp: 'Notification' },
+        { grup: 'not', name: 'Activar' },
+        { grup: 'not', name: 'Silenciar' },
+        { grup: 'not', name: 'Vibració' },
+        { grup: 'not', name: 'Só notificació' },
+        { grup: 'not', name: 'Notificació de Prova' },
+        { camp: 'General' },
+        { grup: 'gen', name: 'asdasd' },
+        { grup: 'gen', name: 'Silenasdasdciar' },
+        { grup: 'gen', name: 'Vibrasdasació' },
+        { grup: 'gen', name: 'Só noasdastificació' },
+        { grup: 'gen', name: 'Notifiasdascació de Prova' },
+        { camp: 'About me' },
+        { grup: 'about', name: 'asdasd' },
+        { grup: 'about', name: 'Silenasdasdciar' },
+        { grup: 'about', name: 'Vibrasdasació' },
+        { grup: 'about', name: 'Só noasdastificació' },
+        { grup: 'about', name: 'Notifiasdascació de Prova' }
       ]
     }
   },
