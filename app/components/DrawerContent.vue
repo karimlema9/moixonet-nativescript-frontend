@@ -117,6 +117,7 @@ import ChannelsList from '../page/ChannelsList'
 import ChannelDetails from '../page/ChannelDetails'
 import Channel from '../page/Channel'
 import AutocompleteEx from '../page/AutocompleteEx'
+import getter from '../store/modules/auth/getters'
 import * as utils from '~/shared/utils'
 import SelectedPageService from '~/shared/selected-page-service'
 import url from '@/utils/url'
@@ -174,12 +175,14 @@ export default {
       dialogs.login({
         title: 'Login',
         message: 'Possa el teu e-mail i contrasenya.',
-        okButtonText: 'Your button text',
+        okButtonText: 'Enviar',
         cancelButtonText: 'Cancela',
         // neutralButtonText: 'Neutral button text',
         userName: 'exemple@exemple.com',
         password: ''
       }).then(function (r) {
+        getter.loggedIn(true)
+        getter.user({ name: 'logged', email: r.userName })
         console.log('Dialog result: ' + r.result + ', user: ' + r.userName + ', pwd: ' + r.password)
       })
     },
