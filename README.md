@@ -1,3 +1,16 @@
+# asd
+
+pagina nuxt i native
+    - vibracio 2 [x] nat
+    - permissos de android [x]
+    - tipo de xarxa i velocitat /
+    - onlyne state * estas conectat o no /
+    - estat de la bateria / 
+    
+
+
+
+
 
 - [X] Drawer
   - [X] Controleu que apareguin correctament seleccionats els items de menú (menú actual ha d'estar amb color fons que el remarqui)

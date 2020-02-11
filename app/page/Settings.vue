@@ -1,36 +1,56 @@
 <template>
   <PageLayout title="Settings" name="Settings">
-    <ScrollView>
-      <ListView for="sett in settings" class="list-group">
-        <v-template if="sett.camp == 'Notification'">
-          <label :text="sett.camp" class="font-weight-bold"/>
-        </v-template>
-        <v-template if="sett.grup == 'not'">
-          <GridLayout columns="1/4*, 3/4*">
-            <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
-            <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-          </GridLayout>
-        </v-template>
-        <v-template if="sett.camp == 'General'">
-          <label :text="sett.camp" class="font-weight-bold"/>
-        </v-template>
-        <v-template if="sett.grup == 'gen'">
-          <GridLayout columns="1/4*, 3/4*">
-            <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
-            <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-          </GridLayout>
-        </v-template>
-        <v-template if="sett.camp == 'About me'">
-          <label :text="sett.camp" class="font-weight-bold"/>
-        </v-template>
-        <v-template if="sett.grup == 'about'">
-          <GridLayout columns="1/4*, 3/4*">
-            <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
-            <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-          </GridLayout>
-        </v-template>
-      </ListView>
-    </ScrollView>
+        <ScrollView>
+          <ListView for="sett in settings" class="list-group">
+            <v-template if="sett.camp == 'Notification'">
+              <label :text="sett.camp" class="font-weight-bold"/>
+            </v-template>
+            <v-template if="sett.grup == 'not'">
+              <GridLayout columns="1/4*, 3/4*">
+                <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
+                <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+              </GridLayout>
+            </v-template>
+            <v-template if="sett.camp == 'General'">
+              <label :text="sett.camp" class="font-weight-bold"/>
+            </v-template>
+            <v-template if="sett.grup == 'gen'">
+              <GridLayout columns="1/4*, 3/4*">
+                <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
+                <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+              </GridLayout>
+            </v-template>
+            <v-template if="sett.camp == 'About me'">
+              <label :text="sett.camp" class="font-weight-bold"/>
+            </v-template>
+            <v-template if="sett.grup == 'about'">
+              <GridLayout columns="1/4*, 3/4*">
+                <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
+                <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
+              </GridLayout>
+            </v-template>
+          </ListView>
+        </ScrollView>
+<!--    <StackLayout background-color="#3c495e">-->
+<!--      <StackLayout>-->
+<!--        <label>Notificacións</label>-->
+<!--        <StackLayout>-->
+
+<!--        </StackLayout>-->
+<!--      </StackLayout>-->
+<!--      <StackLayout>-->
+<!--        <label>General</label>-->
+<!--        <StackLayout>-->
+
+<!--        </StackLayout>-->
+<!--      </StackLayout>-->
+<!--      <StackLayout>-->
+<!--        <label>About me</label>-->
+<!--        <StackLayout>-->
+
+<!--        </StackLayout>-->
+<!--      </StackLayout>-->
+<!--    </StackLayout>-->
   </PageLayout>
 </template>
 <script>

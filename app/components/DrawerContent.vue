@@ -22,6 +22,16 @@
         </GridLayout>
 
         <GridLayout
+          automation-text="nav_link_accions"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'Accions' ? ' -selected': '')"
+          @tap="onNavigationItemTap(Accions)"
+        >
+          <Label col="0" text.decode="&#xf146;" class="nt-icon fas" />
+          <Label col="1" text="Accions" class="p-r-10" />
+        </GridLayout>
+
+        <GridLayout
           automation-text="nav_link_browse"
           columns="auto, *"
           :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' -selected': '')"
@@ -110,6 +120,7 @@
 // import { mapGetters } from 'vuex'
 import Home from '../page/Home'
 import Browse from '../page/Browse'
+import Accions from "../page/Accions";
 import Featured from '../page/Featured'
 import Search from '../page/Search'
 import Settings from '../page/Settings'
@@ -125,6 +136,7 @@ import url from '@/utils/url'
 export default {
   components: {
     Home,
+    Accions,
     Browse,
     Featured,
     Search,
@@ -135,6 +147,7 @@ export default {
     return {
       Home,
       Browse,
+      Accions,
       Featured,
       Search,
       Settings,
