@@ -107,7 +107,7 @@
 <script>
 /* eslint-disable vue/no-unused-components */
 
-import { mapGetters } from 'vuex'
+// import { mapGetters } from 'vuex'
 import Home from '../page/Home'
 import Browse from '../page/Browse'
 import Featured from '../page/Featured'
