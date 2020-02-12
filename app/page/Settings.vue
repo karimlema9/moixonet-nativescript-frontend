@@ -1,95 +1,78 @@
 <template>
   <PageLayout title="Settings" name="Settings">
-        <ScrollView>
-          <ListView for="sett in settings" class="list-group">
-            <v-template if="sett.camp == 'Notification'">
-              <label :text="sett.camp" class="font-weight-bold"/>
-            </v-template>
-            <v-template if="sett.grup == 'not'">
-              <GridLayout columns="1/4*, 3/4*">
-                <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
-                <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-              </GridLayout>
-            </v-template>
-            <v-template if="sett.camp == 'General'">
-              <label :text="sett.camp" class="font-weight-bold"/>
-            </v-template>
-            <v-template if="sett.grup == 'gen'">
-              <GridLayout columns="1/4*, 3/4*">
-                <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
-                <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-              </GridLayout>
-            </v-template>
-            <v-template if="sett.camp == 'About me'">
-              <label :text="sett.camp" class="font-weight-bold"/>
-            </v-template>
-            <v-template if="sett.grup == 'about'">
-              <GridLayout columns="1/4*, 3/4*">
-                <Label :text="sett.name" class="list-group-item-heading" style="width: 60%" />
-                <Switch col="2" checked="true" -checked-change-="onCheckedChange($event)" />
-              </GridLayout>
-            </v-template>
-          </ListView>
-        </ScrollView>
-<!--    <StackLayout background-color="#3c495e">-->
-<!--      <StackLayout>-->
-<!--        <label>Notificacións</label>-->
-<!--        <StackLayout>-->
+    <GridLayout rows="auto, *" class="nt-drawer__content">
+      <ScrollView row="1" class="nt-drawer__body">
+        <StackLayout>
+          <label col="0" verticalAlignment="center" class="title">Notifications</label>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="1" vertical-alignment="center" text="Activar notificacions" />
+            <Switch col="2" horizontal-alignment="right" class="p-r-10" />
+          </GridLayout>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="1" vertical-alignment="center" text="Silenciar notificacions" />
+            <Switch col="2" horizontal-alignment="right" class="p-r-10" />
+          </GridLayout>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="1" vertical-alignment="center" text="Só de notificacions" />
+          </GridLayout>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="1" vertical-alignment="center" text="Notificació de prova" />
+          </GridLayout>
 
-<!--        </StackLayout>-->
-<!--      </StackLayout>-->
-<!--      <StackLayout>-->
-<!--        <label>General</label>-->
-<!--        <StackLayout>-->
+          <label col="1" verticalAlignment="center" class="title">General</label>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="4" vertical-alignment="center" text="Dark Mode" />
+            <Switch propertyChange="switchPropertyChange" checked="false" col="5" horizontal-alignment="right" class="p-r-10" />
+          </GridLayout>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="1" vertical-alignment="center" text="confirma per eliminar" />
+          </GridLayout>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="1" vertical-alignment="center" text="Vibració" />
+            <Switch col="2" horizontal-alignment="right" class="p-r-10" />
+          </GridLayout>
 
-<!--        </StackLayout>-->
-<!--      </StackLayout>-->
-<!--      <StackLayout>-->
-<!--        <label>About me</label>-->
-<!--        <StackLayout>-->
-
-<!--        </StackLayout>-->
-<!--      </StackLayout>-->
-<!--    </StackLayout>-->
+          <label col="2" verticalAlignment="center" class="title">About me</label>
+          <GridLayout
+            columns="auto, *"
+          >
+            <Label col="7" vertical-alignment="center" text="Info" />
+          </GridLayout>
+        </StackLayout>
+      </ScrollView>
+    </GridLayout>
   </PageLayout>
 </template>
 <script>
+// import Theme from 'nativescript-theme-core'
+import observable = require("data/observable");
 export default {
-  data () {
-    return {
-      settings: [
-        { camp: 'Notification' },
-        { grup: 'not', name: 'Activar' },
-        { grup: 'not', name: 'Silenciar' },
-        { grup: 'not', name: 'Vibració' },
-        { grup: 'not', name: 'Só notificació' },
-        { grup: 'not', name: 'Notificació de Prova' },
-        { camp: 'General' },
-        { grup: 'gen', name: 'asdasd' },
-        { grup: 'gen', name: 'Silenasdasdciar' },
-        { grup: 'gen', name: 'Vibrasdasació' },
-        { grup: 'gen', name: 'Só noasdastificació' },
-        { grup: 'gen', name: 'Notifiasdascació de Prova' },
-        { camp: 'About me' },
-        { grup: 'about', name: 'asdasd' },
-        { grup: 'about', name: 'Silenasdasdciar' },
-        { grup: 'about', name: 'Vibrasdasació' },
-        { grup: 'about', name: 'Só noasdastificació' },
-        { grup: 'about', name: 'Notifiasdascació de Prova' }
-      ]
-    }
-  },
 
-  computed: {
-    message () {
-      return '<!-- Page content goes here -->'
-    }
-  },
-  methods: {
-    onItemTap (args) {
-      console.log('Item with index: ' + args.index + ' tapped')
+  export function switchPropertyChange(args: observable.PropertyChangeData) {
+    if (args.propertyName === "checked") {
+      console.log('adasdsad!!!!!!!!')
     }
   }
+  // computed: {
+  //   message () {
+  //     return '<!-- Page content goes here -->'
+  //   }
+  // }
+  // Theme.setMode(Theme.Dark);
 
 }
 </script>
