@@ -32,7 +32,14 @@
             columns="auto, *"
           >
             <Label col="4" vertical-alignment="center" text="Dark Mode" />
-            <Switch propertyChange="switchPropertyChange" checked="false" col="5" horizontal-alignment="right" class="p-r-10" />
+            <Switch
+              v-model="checked"
+              property-change="switchPropertyChange"
+              checked="false"
+              col="5"
+              horizontal-alignment="right"
+              class="p-r-10"
+            />
           </GridLayout>
           <GridLayout
             columns="auto, *"
@@ -58,21 +65,30 @@
   </PageLayout>
 </template>
 <script>
-// import Theme from 'nativescript-theme-core'
-import observable = require("data/observable");
+import Theme from 'nativescript-theme-core'
+import { Observable } from 'tns-core-modules/data/observable'
+// eslint-disable-next-line no-unused-vars
+const observableObject = new Observable()
 export default {
-
-  export function switchPropertyChange(args: observable.PropertyChangeData) {
-    if (args.propertyName === "checked") {
-      console.log('adasdsad!!!!!!!!')
+  data () {
+    return {
+      checked: true
+    }
+  },
+  computed: {
+    message () {
+      return '<!-- Page content goes here -->'
+    }
+  },
+  watch: {
+    // whenever checked changes, this function will run
+    checked (val) {
+      if (val) {
+        Theme.setMode(Theme.Light)
+        console.log('May The 4 Be With You')
+      } else Theme.setMode(Theme.Dark)
+      console.log('You are going to the dark side...')
     }
   }
-  // computed: {
-  //   message () {
-  //     return '<!-- Page content goes here -->'
-  //   }
-  // }
-  // Theme.setMode(Theme.Dark);
-
 }
 </script>
