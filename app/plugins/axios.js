@@ -10,7 +10,6 @@ const snackbar = new SnackBar()
 
 export const baseUrl = 'https://moixonet.acacha.scool.cat'
 
-
 const myAxios = axios.create({
   baseURL: baseUrl + '/api/v1',
   // adapter: httpAdapter,

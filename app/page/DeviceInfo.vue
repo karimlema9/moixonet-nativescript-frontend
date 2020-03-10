@@ -1,12 +1,40 @@
 <template>
-  <PageLayout title="Accions" name="Accions" class="font-weight-bold">
+  <PageLayout title="DeviceInfo" name="DeviceInfo" class="font-weight-bold">
     <StackLayout>
       <StackLayout>
-        <button @tap="vibra">Vibra</button>
+        <button @tap="vibration">
+          Vibra
+        </button>
       </StackLayout>
       <StackLayout>
-        <button @tap="vibra">Tipus de xarxa i Velocitat</button>
+        <button @tap="velocity">
+          Tipus de xarxa i Velocitat
+        </button>
       </StackLayout>
+      <StackLayout>
+        <button @tap="batery">
+          Bateria
+        </button>
+      </StackLayout>
+      <StackLayout>
+        <button @tap="ram">
+          Memoria RAM
+        </button>
+      </StackLayout>
+      <StackLayout>
+        <button @tap="connection">
+          Tipus de connexió
+        </button>
+      </StackLayout>
+      <!--      <StackLayout>-->
+      <Fab
+        row="1"
+        icon="res://baseline_add_white_24"
+        ripple-color="#f1f1f1"
+        class="fab-button"
+        @tap="share"
+      />
+      <!--      </StackLayout>-->
     </StackLayout>
   </PageLayout>
 </template>
@@ -17,10 +45,14 @@ import { Vibrate } from 'nativescript-vibrate'
 const vibrator = new Vibrate()
 export default {
   methods: {
-    vibra () {
+    vibration () {
       vibrator.vibrate(200)
-    }
-  },
+    },
+    share () {
+      console.log('-------------------------izzan')
+    },
+
+  }
   // export function onNavigatedTo(args) {
   //   const page = args.object;
   //   let connectionTypeString;

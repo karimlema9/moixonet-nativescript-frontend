@@ -10,13 +10,13 @@
         <Button text="snackbar 3" @tap="showColorfulSnackbar" />
         <Label @swipe="unsubscribe"> Loading: {{ loading ? 'True': 'False' }}</Label>
         <RadListView
-                ref="listView"
-                for="channel in channels"
-                :swipeActions="true"
-                :pullToRefresh="true"
-                @itemTap="onItemTap"
-                @itemSwipeProgressStarted="onSwipeStarted"
-                @pullToRefreshInitiated="onPullToRefreshInitiated"
+          ref="listView"
+          for="channel in channels"
+          :swipe-actions="true"
+          :pull-to-refresh="true"
+          @itemTap="onItemTap"
+          @itemSwipeProgressStarted="onSwipeStarted"
+          @pullToRefreshInitiated="onPullToRefreshInitiated"
         >
           <v-template>
             <GridLayout rows="auto" columns="auto, *, auto">
@@ -32,7 +32,7 @@
 
           <v-template name="itemswipe">
             <GridLayout columns="auto, *, auto" background-color="White">
-              <Label></Label>
+              <Label />
             </GridLayout>
           </v-template>
         </RadListView>
@@ -46,47 +46,47 @@
 </template>
 
 <script>
-  import { SnackBar } from 'nativescript-material-snackbar'
-  import SelectedPageService from '../shared/selected-page-service'
-  // import channelsFixture from '../../e2e/fixtures/channels'
-  import * as mutations from '../store/mutation-types'
-  import api from '../store/api/channelsPublished'
-  import * as utils from '~/shared/utils'
-  import {baseUrl} from '../plugins/axios'
+import { SnackBar } from 'nativescript-material-snackbar'
+import SelectedPageService from '../shared/selected-page-service'
+// import channelsFixture from '../../e2e/fixtures/channels'
+import * as mutations from '../store/mutation-types'
+import api from '../store/api/channelsPublished'
+import { baseUrl } from '../plugins/axios'
+import * as utils from '~/shared/utils'
 
-  const snackbar = new SnackBar()
+const snackbar = new SnackBar()
 
-  export default {
-    name: 'ChannelsList',
-    data () {
-      return {
-        // channels: channelsFixture
-        channels: []
-      }
+export default {
+  name: 'ChannelsList',
+  data () {
+    return {
+      // channels: channelsFixture
+      channels: []
+    }
+  },
+  computed: {
+    loading () {
+      return this.$store.getters['axios/loading']
+    }
+  },
+  mounted () {
+    SelectedPageService.getInstance().updateSelectedPage('ChannelsList')
+  },
+  async created () {
+    await this.refresh()
+  },
+  methods: {
+    getImageUrl (channel) {
+      const url = baseUrl + '/channels/published/' + channel.id + '/image'
+      console.log(url)
+      return url
     },
-    computed: {
-      loading () {
-        return this.$store.getters['axios/loading']
-      }
+    onItemTap () {
+      console.log('########## HEY!!!!!!!!!!!')
     },
-    mounted () {
-      SelectedPageService.getInstance().updateSelectedPage('ChannelsList')
-    },
-    async created () {
-      await this.refresh()
-    },
-    methods: {
-      getImageUrl (channel) {
-        const url = baseUrl + '/channels/published/' + channel.id + '/image'
-        console.log(url)
-        return url
-      },
-      onItemTap () {
-        console.log('########## HEY!!!!!!!!!!!')
-      },
-      onSwipeStarted () {
-        console.log('********************************************************* Swipe started')
-        confirm('Esteu segurs que voleu sortir del canal?')
+    onSwipeStarted () {
+      console.log('********************************************************* Swipe started')
+      confirm('Esteu segurs que voleu sortir del canal?')
         .then((result) => {
           if (result) {
             console.log('TODO SORTIR')
@@ -94,35 +94,35 @@
           }
           console.log('CANCEL!')
         })
-      },
-      async onPullToRefreshInitiated ({ object }) {
-        console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!! Pulling...');
-        await this.refresh()
-        object.notifyPullToRefreshFinished()
-      },
-      unsubscribe () {
-        console.log('TODO UNSUBSCRIBE!!!')
-      },
-      unload () {
-        this.$store.commit('axios/' + mutations.SET, { key: 'loading', value: false })
-      },
-      load () {
-        this.$store.commit('axios/' + mutations.SET, { key: 'loading', value: true })
-      },
-      showSimpleSnackbar () {
-        snackbar.simple('I\'m a simple snackbar').then(result => console.log('Simple Snackbar:', result))
-      },
-      showActionSnackbar () {
-        snackbar
+    },
+    async onPullToRefreshInitiated ({ object }) {
+      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!! Pulling...')
+      await this.refresh()
+      object.notifyPullToRefreshFinished()
+    },
+    unsubscribe () {
+      console.log('TODO UNSUBSCRIBE!!!')
+    },
+    unload () {
+      this.$store.commit('axios/' + mutations.SET, { key: 'loading', value: false })
+    },
+    load () {
+      this.$store.commit('axios/' + mutations.SET, { key: 'loading', value: true })
+    },
+    showSimpleSnackbar () {
+      snackbar.simple('I\'m a simple snackbar').then(result => console.log('Simple Snackbar:', result))
+    },
+    showActionSnackbar () {
+      snackbar
         .action({
           message: 'I\'m a snackbar with an action',
           actionText: 'Dismiss',
           hideDelay: 2000
         })
         .then(result => console.log('Action Snackbar:', result))
-      },
-      showColorfulSnackbar () {
-        snackbar
+    },
+    showColorfulSnackbar () {
+      snackbar
         .action({
           message: 'I\'m a colorful snackbar',
           textColor: 'blue',
@@ -132,26 +132,26 @@
           hideDelay: 2000
         })
         .then(result => console.log('Action Snackbar:', result))
-      },
-      onDrawerButtonTap () {
-        utils.showDrawer()
-      },
-      async refresh () {
-        console.log('REFRESHING!')
-        // this.loading = true
-        // try {
-        //   const result = await this.$axios.get('/channels')
-        //   this.channels = result.data
-        // } catch (error) {
-        //   // this.$snackbar.showError(error)
-        // }
-        // this.loading = false
-        // const result = await this.$axios.get('/channels')
-        const result = await api.index()
-        this.channels = result.data
-      }
+    },
+    onDrawerButtonTap () {
+      utils.showDrawer()
+    },
+    async refresh () {
+      console.log('REFRESHING!')
+      // this.loading = true
+      // try {
+      //   const result = await this.$axios.get('/channels')
+      //   this.channels = result.data
+      // } catch (error) {
+      //   // this.$snackbar.showError(error)
+      // }
+      // this.loading = false
+      // const result = await this.$axios.get('/channels')
+      const result = await api.index()
+      this.channels = result.data
     }
   }
+}
 </script>
 
 <style scoped lang="scss">

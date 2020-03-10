@@ -2,7 +2,9 @@
   <PageLayout title="Els meus canals" name="Home" class="font-weight-bold">
     <GridLayout class="page__content">
       <template v-if="channels.length > 0">
-        <user-channels :channels="channels" />
+        <user-channels
+          :channels="channels"
+        />
         <Button class="page__content-cta c-bg-ruby c-white" automation-text="new_channel_button" text="Eliminar tots els canals " @tap="removeAll" />
       </template>
       <template v-else>
@@ -28,6 +30,8 @@
 <script>
 import UserChannels from '../components/UserChannels'
 import channelsData from '../data/channels.json'
+import SelectedPageService from '../shared/selected-page-service'
+import api from '../store/api/channelsPublished'
 import NewChannel from './NewChannel'
 
 export default {
@@ -44,7 +48,27 @@ export default {
       return 'No esteu subscrit a cap canal'
     }
   },
+  mounted () {
+    SelectedPageService.getInstance().updateSelectedPage('Home')
+  },
+  async created () {
+    await this.refresh()
+  },
   methods: {
+    async refresh () {
+      console.log('REFRESHING!')
+      // this.loading = true
+      // try {
+      //   const result = await this.$axios.get('/channels')
+      //   this.channels = result.data
+      // } catch (error) {
+      //   // this.$snackbar.showError(error)
+      // }
+      // this.loading = false
+      // const result = await this.$axios.get('/channels')
+      const result = await api.index()
+      this.channels = result.data
+    },
     newChannel () {
       this.$navigateTo(NewChannel)
     },

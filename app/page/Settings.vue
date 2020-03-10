@@ -85,9 +85,9 @@ export default {
     checked (val) {
       if (val) {
         Theme.setMode(Theme.Light)
-        console.log('May The 4 Be With You')
+        console.log('Light')
       } else Theme.setMode(Theme.Dark)
-      console.log('You are going to the dark side...')
+      console.log('Dark')
     }
   }
 }
