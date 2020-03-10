@@ -50,8 +50,7 @@ export default {
     },
     share () {
       console.log('-------------------------izzan')
-    },
-
+    }
   }
   // export function onNavigatedTo(args) {
   //   const page = args.object;

@@ -18,6 +18,7 @@
     "nativescript-floatingactionbutton": "^5.1.0",
     "nativescript-fonticon": "^2.0.0",
     "nativescript-material-snackbar": "^3.1.5",
+    "nativescript-powerinfo": "^1.0.7",
     "nativescript-share-file": "^1.0.6",
     "nativescript-socketio": "^3.3.1",
     "nativescript-toasty": "^3.0.0-alpha.2",
