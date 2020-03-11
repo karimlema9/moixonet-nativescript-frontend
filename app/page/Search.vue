@@ -56,21 +56,21 @@
 <!--    // Custom styles-->
 <!--</style>-->
 
-<template>
-  <PageLayout title="Search" name="Search">
-    <GridLayout class="page__content">
-      <Label class="page__content-icon fas" text.decode="&#xf002;" />
-      <Label class="page__content-placeholder" :text="message" />
-    </GridLayout>
-  </PageLayout>
-</template>
+<!--<template>-->
+<!--  <PageLayout title="Search" name="Search">-->
+<!--    <GridLayout class="page__content">-->
+<!--      <Label class="page__content-icon fas" text.decode="&#xf002;" />-->
+<!--      <Label class="page__content-placeholder" :text="message" />-->
+<!--    </GridLayout>-->
+<!--  </PageLayout>-->
+<!--</template>-->
 
-<script>
-export default {
-  computed: {
-    message () {
-      return '<!-- Page content goes here -->'
-    }
-  }
-}
-</script>
+<!--<script>-->
+<!--export default {-->
+<!--  computed: {-->
+<!--    message () {-->
+<!--      return '&lt;!&ndash; Page content goes here &ndash;&gt;'-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->

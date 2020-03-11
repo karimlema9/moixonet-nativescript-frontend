@@ -5,7 +5,7 @@
     <RadListView
       for="channel in channels"
       swipe-actions="true"
-      @itemTap="$emit('selected')"
+      @itemTap="$emit('selected', channel)"
     >
       <v-template>
         <GridLayout rows="auto" columns="auto, *, auto">

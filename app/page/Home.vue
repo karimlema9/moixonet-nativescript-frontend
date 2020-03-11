@@ -105,25 +105,25 @@
   <PageLayout title="Els meus canals" name="Home">
     <GridLayout class="page__content">
       <user-channels></user-channels>
-      <search-published-channels-fab-button @tap="$navigateTo(NewChannel)"></search-published-channels-fab-button>
+<!--      <search-published-channels-fab-button @tap="$navigateTo(NewChannel)"></search-published-channels-fab-button>-->
     </GridLayout>
   </PageLayout>
 </template>
 
 <script>
   import UserChannels from '../components/channel/UserChannels'
-  import NewChannel from './NewChannel'
-  import SearchPublishedChannelsFabButton from '../components/channel/SearchPublishedChannelsFabButton'
+  // import NewChannel from './NewChannel'
+  // import SearchPublishedChannelsFabButton from '../components/channel/SearchPublishedChannelsFabButton'
 
   export default {
     components: {
-      'user-channels': UserChannels,
-      'search-published-channels-fab-button': SearchPublishedChannelsFabButton
-    },
-    data () {
-      return {-->
-         channels: channelsData
-      }
+      'user-channels': UserChannels
+      // 'search-published-channels-fab-button': SearchPublishedChannelsFabButton
     }
+  //   data () {
+  //     return {
+  //        channels: channelsData
+  //     }
+  //   }
   }
 </script>

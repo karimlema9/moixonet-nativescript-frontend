@@ -38,7 +38,7 @@ export default {
       console.log(channel)
       this.$navigateTo(ChannelDetails, {
         props: {
-          channel
+          channel: 'a'
         }
       })
     }
