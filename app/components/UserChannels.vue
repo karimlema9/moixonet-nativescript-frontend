@@ -8,9 +8,7 @@
 </template>
 
 <script>
-import ChannelDetails from '../../page/ChannelDetails'
-import * as getters from '../../store/getter-types'
-import * as actions from '../../store/action-types'
+import ChannelDetails from '../page/ChannelDetails'
 import AppUserChannels from './AppUserChannels'
 import ChannelsNoItems from './ChannelsNoItems'
 
@@ -20,6 +18,12 @@ export default {
     'app-user-channels': AppUserChannels,
     'channels-no-items': ChannelsNoItems
   },
+  props: {
+    channels: {
+      type: Array,
+      required: true
+    }
+  },
   computed: {
     length () {
       return this.channels && this.channels.length
@@ -27,18 +31,28 @@ export default {
     channels () {
       // console.log('getters.CHANNELS: ')
       // console.log(getters.CHANNELS)
-      return this.$store.getters[getters.CHANNELS]
+      // return this.$store.getters[getters.CHANNELS]
     }
   },
   methods: {
-    leave (channel) {
-      // this.$store.dispatch(actions.LEAVE_CHANNEL, channel)
+    leave () {
+      // TODO CONFIRM DIALOG
+      alert('Leaving channel').then(() => {
+        console.log('Dialog closed')
+        // this.$store.dispatch(actions.LEAVE_CHANNEL, channel)
+      })
+
+      // TODO -> Si es confirma vol sortir del canal eliminar de l'storage
     },
-    selected (channel) {
-      console.log(channel)
+    selected (args) {
+      console.log('SELECTED!')
+      console.log('args:')
+      console.log(args)
       this.$navigateTo(ChannelDetails, {
         props: {
-          channel: 'a'
+          channel: {
+            name: 'Channel X'
+          }
         }
       })
     }

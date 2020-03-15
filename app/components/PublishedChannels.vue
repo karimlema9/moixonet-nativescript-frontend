@@ -4,7 +4,7 @@
 
 <script>
 import publishedChannelsData from '../data/publishedChannels.json'
-import AppUserChannels from './channel/AppUserChannels'
+import AppUserChannels from './AppUserChannels'
 
 export default {
   name: 'PublishedChannels',

@@ -21,142 +21,140 @@
           <Label col="1" text="Home" class="p-r-10" />
         </GridLayout>
 
+        <GridLayout
+          automation-text="nav_link_deviceInfo"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'DeviceInfo' ? ' -selected': '')"
+          @tap="onNavigationItemTap(DeviceInfo)"
+        >
+          <Label col="0" text.decode="&#xf146;" class="nt-icon fas" />
+          <Label col="1" text="DeviceInfo" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_deviceInfo"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'DeviceInfo' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(DeviceInfo)"-->
-        <!--        >-->
-        <!--          <Label col="0" text.decode="&#xf146;" class="nt-icon fas" />-->
-        <!--          <Label col="1" text="DeviceInfo" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <GridLayout
+          automation-text="nav_link_browse"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' -selected': '')"
+          @tap="onNavigationItemTap(Browse)"
+        >
+          <Label col="0" text.decode="&#xf1ea;" class="nt-icon far" />
+          <Label col="1" text="Browse" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_browse"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'Browse' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(Browse)"-->
-        <!--        >-->
-        <!--          <Label col="0" text.decode="&#xf1ea;" class="nt-icon far" />-->
-        <!--          <Label col="1" text="Browse" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <GridLayout
+          automation-text="nav_link_search"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'Search' ? ' -selected': '')"
+          @tap="onNavigationItemTap(Search)"
+        >
+          <Label col="0" text.decode="&#xf002;" class="nt-icon fas" />
+          <Label col="1" text="Search" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_search"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'Search' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(Search)"-->
-        <!--        >-->
-        <!--          <Label col="0" text.decode="&#xf002;" class="nt-icon fas" />-->
-        <!--          <Label col="1" text="Search" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <GridLayout
+          automation-text="nav_link_featured"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'Featured' ? ' -selected': '')"
+          @tap="onNavigationItemTap(Featured)"
+        >
+          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />
+          <Label col="1" text="Featured" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_featured"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'Featured' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(Featured)"-->
-        <!--        >-->
-        <!--          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />-->
-        <!--          <Label col="1" text="Featured" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <GridLayout automation-text="nav_link_featured" columns="auto, *" :class="'nt-drawer__list-item' + (selectedPage === 'ChannelsList' ? ' -selected': '')" @tap="onNavigationItemTap(ChannelsList)">
+          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />
+          <Label col="1" text="Channels" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout automation-text="nav_link_featured" columns="auto, *" :class="'nt-drawer__list-item' + (selectedPage === 'ChannelsList' ? ' -selected': '')" @tap="onNavigationItemTap(ChannelsList)">-->
-        <!--          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />-->
-        <!--          <Label col="1" text="Channels" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <GridLayout
+          automation-text="nav_link_channel"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'Channel' ? ' -selected': '')"
+          @tap="onNavigationItemTap(Channel)"
+        >
+          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />
+          <Label col="1" text="Channel" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_channel"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'Channel' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(Channel)"-->
-        <!--        >-->
-        <!--          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />-->
-        <!--          <Label col="1" text="Channel" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <GridLayout
+          automation-text="nav_link_channel_details"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'ChannelDetails' ? ' -selected': '')"
+          @tap="onNavigationItemTap(ChannelDetails, { props: { channel: { name: 'PROVA NOM CANAL DES DE MENU' } } })"
+        >
+          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />
+          <Label col="1" text="Channel DETAILS" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_channel_details"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'ChannelDetails' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(ChannelDetails, { props: { channel: { name: 'PROVA NOM CANAL DES DE MENU' } } })"-->
-        <!--        >-->
-        <!--          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />-->
-        <!--          <Label col="1" text="Channel DETAILS" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <StackLayout class="hr" />
 
-        <!--        <StackLayout class="hr" />-->
+        <GridLayout
+          automation-text="nav_link_autocomplete_ex"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'AutocompleteEx' ? ' -selected': '')"
+          @tap="onNavigationItemTap(AutocompleteEx)"
+        >
+          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />
+          <Label col="1" text="AutocompleteEx" class="p-r-10" />
+        </GridLayout>
 
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_autocomplete_ex"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'AutocompleteEx' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(AutocompleteEx)"-->
-        <!--        >-->
-        <!--          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />-->
-        <!--          <Label col="1" text="AutocompleteEx" class="p-r-10" />-->
-        <!--        </GridLayout>-->
+        <StackLayout class="hr" />
 
-        <!--        <StackLayout class="hr" />-->
-
-        <!--        <GridLayout-->
-        <!--          automation-text="nav_link_settings"-->
-        <!--          columns="auto, *"-->
-        <!--          :class="'nt-drawer__list-item' + (selectedPage === 'Settings' ? ' -selected': '')"-->
-        <!--          @tap="onNavigationItemTap(Settings)"-->
-        <!--        >-->
-
-        <Label col="0" text.decode="&#xf013;" class="nt-icon fas" />
-        <Label col="1" text="Settings" class="p-r-10" />
-      </stacklayout>
-    </scrollview>
-  </GridLayout>
-  </StackLayout>
-  </ScrollView>
+        <GridLayout
+          automation-text="nav_link_settings"
+          columns="auto, *"
+          :class="'nt-drawer__list-item' + (selectedPage === 'Settings' ? ' -selected': '')"
+          @tap="onNavigationItemTap(Settings)"
+        >
+          <Label col="0" text.decode="&#xf013;" class="nt-icon fas" />
+          <Label col="1" text="Settings" class="p-r-10" />
+        </GridLayout>
+      </StackLayout>
+    </ScrollView>
   </GridLayout>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+/* eslint-disable vue/no-unused-components */
+
+// import { mapGetters } from 'vuex'
 import Home from '../page/Home'
+import Browse from '../page/Browse'
+import DeviceInfo from "../page/DeviceInfo";
+import Featured from '../page/Featured'
+import Search from '../page/Search'
+import Settings from '../page/Settings'
+import ChannelsList from '../page/ChannelsList'
+import ChannelDetails from '../page/ChannelDetails'
+import Channel from '../page/Channel'
+import AutocompleteEx from '../page/AutocompleteEx'
 import getter from '../store/modules/auth/getters'
+import * as utils from '~/shared/utils'
 import SelectedPageService from '~/shared/selected-page-service'
 import url from '@/utils/url'
-import * as utils from '~/shared/utils'
-// <!--import Browse from '../page/Browse'-->
-// <!--import DeviceInfo from "../page/DeviceInfo";-->
-// <!--import Featured from '../page/Featured'-->
-// <!--import Search from '../page/Search'-->
-// <!--import Settings from '../page/Settings'-->
-// <!--import ChannelsList from '../page/ChannelsList'-->
-// <!--import ChannelDetails from '../page/ChannelDetails'-->
-// <!--import Channel from '../page/Channel'-->
-// <!--import AutocompleteEx from '../page/AutocompleteEx'-->
 
 export default {
   components: {
-    Home
-    // DeviceInfo,
-    // Browse,
-    // Featured,
-    // Search,
-    // Settings,
-    // ChannelDetails
+    Home,
+    DeviceInfo,
+    Browse,
+    Featured,
+    Search,
+    Settings,
+    ChannelDetails
   },
   data () {
     return {
       Home,
-      // Browse,
-      // DeviceInfo,
-      // Featured,
-      // Search,
-      // Settings,
-      // ChannelsList,
-      // Channel,
-      // AutocompleteEx,
-      // ChannelDetails,
+      Browse,
+      DeviceInfo,
+      Featured,
+      Search,
+      Settings,
+      ChannelsList,
+      Channel,
+      AutocompleteEx,
+      ChannelDetails,
       selectedPage: ''
     }
   },

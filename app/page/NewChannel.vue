@@ -140,6 +140,7 @@
 <!--  /*}*/-->
 <!--</style>-->
 
+<!--suppress ES6ModulesDependencies, SpellCheckingInspection, HtmlUnknownAttribute -->
 <template>
   <PageLayout title="Nou Canal" name="Home">
     <GridLayout class="page__content">

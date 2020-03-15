@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import NewChannel from "../../page/NewChannel"
+import NewChannel from '../page/NewChannel'
 
 export default {
   name: 'ChannelsNoItems',
