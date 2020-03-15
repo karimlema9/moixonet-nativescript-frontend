@@ -1,9 +1,9 @@
 <template>
   <StackLayout>
-    <template v-if="length > 0">
+    <template >
       <app-user-channels :channels="channels" @leave="leave" @selected="selected" />
     </template>
-    <channels-no-items v-else />
+    <channels-no-items/>
   </StackLayout>
 </template>
 
@@ -24,16 +24,16 @@ export default {
       required: true
     }
   },
-  computed: {
-    length () {
-      return this.channels && this.channels.length
-    },
-    channels () {
-      // console.log('getters.CHANNELS: ')
-      // console.log(getters.CHANNELS)
-      // return this.$store.getters[getters.CHANNELS]
-    }
-  },
+  // computed: {
+  //   length () {
+  //     return this.channels && this.channels.length
+  //   },
+  //   channels () {
+  //     // console.log('getters.CHANNELS: ')
+  //     // console.log(getters.CHANNELS)
+  //     // return this.$store.getters[getters.CHANNELS]
+  //   }
+  // },
   methods: {
     leave () {
       // TODO CONFIRM DIALOG

@@ -141,41 +141,104 @@
 <!--</style>-->
 
 <!--suppress ES6ModulesDependencies, SpellCheckingInspection, HtmlUnknownAttribute -->
+<!--<template>-->
+<!--  <PageLayout title="Nou Canal" name="Home">-->
+<!--    <GridLayout class="page__content">-->
+<!--      <SearchBar hint="Search hint" :text="channel" @textChange="onTextChanged" @returnPress="onReturnPress" @submit="onSubmit" />-->
+<!--      <published-channels />-->
+<!--    </GridLayout>-->
+<!--  </PageLayout>-->
+<!--</template>-->
+
+<!--<script>-->
+<!--import PublishedChannels from '../components/PublishedChannels'-->
+<!--export default {-->
+<!--  name: 'NewChannel',-->
+<!--  components: {-->
+<!--    'published-channels': PublishedChannels-->
+<!--  },-->
+<!--  data () {-->
+<!--    return {-->
+<!--      channel: ''-->
+<!--    }-->
+<!--  },-->
+<!--  computed: {-->
+<!--    message () {-->
+<!--      return "No s'ha trobat cap canal!"-->
+<!--    }-->
+<!--  },-->
+<!--  methods: {-->
+<!--    onSubmit () {-->
+<!--      console.log('ON SUBMIT!')-->
+<!--    },-->
+<!--    onTextChanged () {-->
+<!--      console.log('TEXT CHANGED!')-->
+<!--    },-->
+<!--    onReturnPress () {-->
+<!--      console.log('RETURN PRESSED!')-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
+
 <template>
-  <PageLayout title="Nou Canal" name="Home">
-    <GridLayout class="page__content">
-      <SearchBar hint="Search hint" :text="channel" @textChange="onTextChanged" @returnPress="onReturnPress" @submit="onSubmit" />
-      <published-channels />
-    </GridLayout>
+  <PageLayout title="Nou Canal" name="NewChannel">
+    <StackLayout padding="5">
+      <Label text="Busca un Canal:" />
+      <RadAutoCompleteTextView
+        ref="autocomplete"
+        display-mode="plain"
+        suggest-mode="Suggest"
+        :items="dataItems"
+      >
+        <SuggestionView -suggestion-view suggestion-view-height="300">
+          <StackLayout v-suggestionItemTemplate orientation="vertical" padding="10">
+            <v-template>
+              <Label :text="item.text" />
+            </v-template>
+          </StackLayout>
+        </SuggestionView>
+      </RadAutoCompleteTextView>
+    </StackLayout>
   </PageLayout>
 </template>
 
 <script>
-import PublishedChannels from '../components/PublishedChannels'
+import { ObservableArray } from 'tns-core-modules'
+
 export default {
   name: 'NewChannel',
-  components: {
-    'published-channels': PublishedChannels
-  },
   data () {
     return {
-      channel: ''
+      title: 'Aeroports',
+      dataItems: new ObservableArray()
     }
   },
-  computed: {
-    message () {
-      return "No s'ha trobat cap canal!"
-    }
+  mounted () {
+    const jsonUrl = 'https://raw.githubusercontent.com/NativeScript/nativescript-ui-samples/master/examples-data/airports.json'
+    this.$refs.autocomplete.setLoadSuggestionsAsync((text) => {
+      const promise = new Promise((resolve, reject) => {
+        http.getJSON(jsonUrl).then((r) => {
+          const airportsCollection = r.airports
+          const items = new Array()
+          for (let i = 0; i < airportsCollection.length; i++) {
+            items.push(new TokenModel(airportsCollection[i].FIELD2, null))
+          }
+          resolve(items)
+        }).catch((err) => {
+          const message = `Error fetching remote data from ${jsonUrl}: ${err.message}`
+          console.log(message)
+          alert(message)
+          reject()
+        })
+      })
+
+      return promise
+    })
   },
   methods: {
-    onSubmit () {
-      console.log('ON SUBMIT!')
-    },
-    onTextChanged () {
-      console.log('TEXT CHANGED!')
-    },
-    onReturnPress () {
-      console.log('RETURN PRESSED!')
+    onNavigationButtonTap () {
+      Frame.topmost().goBack()
     }
   }
 }

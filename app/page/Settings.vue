@@ -1,6 +1,6 @@
 <template>
   <PageLayout title="Settings" name="Settings">
-    <GridLayout rows="auto, *" class="nt-drawer__content">
+    <GridLayout rows="auto, *" class="nt-drawer__content sep">
       <ScrollView row="1" class="nt-drawer__body">
         <StackLayout>
           <label col="0" verticalAlignment="center" class="title">Notifications</label>
@@ -18,11 +18,13 @@
           </GridLayout>
           <GridLayout
             columns="auto, *"
+            class="separator"
           >
             <Label col="1" vertical-alignment="center" text="Só de notificacions" />
           </GridLayout>
           <GridLayout
             columns="auto, *"
+            class="separator"
           >
             <Label col="1" vertical-alignment="center" text="Notificació de prova" />
           </GridLayout>
@@ -43,8 +45,9 @@
           </GridLayout>
           <GridLayout
             columns="auto, *"
+            class="separator"
           >
-            <Label col="1" vertical-alignment="center" text="confirma per eliminar" />
+            <Label col="1" vertical-alignment="center" text="Confirma per eliminar" />
           </GridLayout>
           <GridLayout
             columns="auto, *"
@@ -92,3 +95,12 @@ export default {
   }
 }
 </script>
+
+<style>
+  .sep {
+    margin: 25px 50px 75px;
+  },
+  .separator {
+    margin-bottom: 30px;
+  }
+</style>
