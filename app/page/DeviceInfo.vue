@@ -15,6 +15,7 @@
         <button @tap="batery">
           Bateria
         </button>
+        <label>asd2 {{ ram() }} </label>
       </StackLayout>
       <StackLayout>
         <button @tap="ram">
@@ -42,8 +43,15 @@
 <script>
 // import { connectionType, getConnectionType, startMonitoring, stopMonitoring } from 'tns-core-modules/connectivity'
 import { Vibrate } from 'nativescript-vibrate'
+const power = require('nativescript-powerinfo')
 const vibrator = new Vibrate()
 export default {
+  name: 'DeviceInfo',
+  data () {
+    return {
+      batbat: null
+    }
+  },
   methods: {
     vibration () {
       vibrator.vibrate(200)
@@ -51,6 +59,14 @@ export default {
     share () {
       console.log('-------------------------izzan')
     },
+    batery () {
+      this.batbat = power.startPowerUpdates(function (Info) {
+        console.log('Porcentaje de bateria: ' + Info.percent + '%')
+      })
+    },
+    ram () {
+      console.log('asddddd ' + this.batbat)
+    }
 
   }
   // export function onNavigatedTo(args) {

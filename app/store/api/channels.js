@@ -2,15 +2,15 @@ import { myAxios as httpClient } from '../../plugins/axios'
 
 export default {
   index () {
-    return httpClient.get('/api/v1/channels/')
+    return httpClient.get('/channels')
   },
   store (channel) {
-    return httpClient.post('/api/v1/channels/', channel)
+    return httpClient.post('/channels', channel)
   },
-  delete (id) {
-    return httpClient.delete('/api/v1/channels/' + id)
+  destroy (channel) {
+    return httpClient.delete('/channels/' + channel.id)
   },
-  put (channel, newChannel) {
-    return httpClient.put('/api/v1/channels/' + channel.id, newChannel)
+  update (channel) {
+    return httpClient.put('/channels/' + channel.id, channel)
   }
 }

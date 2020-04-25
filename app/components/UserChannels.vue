@@ -1,14 +1,16 @@
 <template>
   <StackLayout>
-    <template >
+    <template v-if="length > 0">
       <app-user-channels :channels="channels" @leave="leave" @selected="selected" />
     </template>
-    <channels-no-items/>
+    <channels-no-items v-else />
   </StackLayout>
 </template>
 
 <script>
 import ChannelDetails from '../page/ChannelDetails'
+import * as actions from '../store/action-types'
+import * as getters from '../store/getter-types'
 import AppUserChannels from './AppUserChannels'
 import ChannelsNoItems from './ChannelsNoItems'
 
@@ -18,41 +20,25 @@ export default {
     'app-user-channels': AppUserChannels,
     'channels-no-items': ChannelsNoItems
   },
-  props: {
-    channels: {
-      type: Array,
-      required: true
+  computed: {
+    length () {
+      return this.channels && this.channels.length
+    },
+    channels () {
+      // console.log('getters.CHANNELS: ')
+      // console.log('------------------------' + getters.CHANNELS)
+      // console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
+      return this.$store.getters[getters.CHANNELS]
     }
   },
-  // computed: {
-  //   length () {
-  //     return this.channels && this.channels.length
-  //   },
-  //   channels () {
-  //     // console.log('getters.CHANNELS: ')
-  //     // console.log(getters.CHANNELS)
-  //     // return this.$store.getters[getters.CHANNELS]
-  //   }
-  // },
   methods: {
-    leave () {
-      // TODO CONFIRM DIALOG
-      alert('Leaving channel').then(() => {
-        console.log('Dialog closed')
-        // this.$store.dispatch(actions.LEAVE_CHANNEL, channel)
-      })
-
-      // TODO -> Si es confirma vol sortir del canal eliminar de l'storage
+    leave (channel) {
+      // this.$store.dispatch(actions.LEAVE_CHANNEL, channel)
     },
-    selected (args) {
-      console.log('SELECTED!')
-      console.log('args:')
-      console.log(args)
+    selected (channel) {
       this.$navigateTo(ChannelDetails, {
         props: {
-          channel: {
-            name: 'Channel X'
-          }
+          channel
         }
       })
     }
