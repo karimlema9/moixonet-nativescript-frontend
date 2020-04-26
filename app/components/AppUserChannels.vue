@@ -1,85 +1,56 @@
-<!--<template>-->
-<!--  <StackLayout>-->
-<!--    &lt;!&ndash;    <Label class="page__content-placeholder" :text="channels" />&ndash;&gt;-->
-<!--    <RadListView-->
-<!--      for="channel in channels"-->
-<!--      @itemTap="$emit('selected')"-->
-<!--    >-->
-<!--      <v-template>-->
-<!--        <GridLayout rows="auto" columns="auto, *, auto">-->
-<!--          <Image-->
-<!--            row="0"-->
-<!--            col="0"-->
-<!--            :src="imagealt"-->
-<!--            class="thumb img-rounded m-l-16"-->
-<!--            width="75"-->
-<!--            height="75"-->
-<!--          />-->
-<!--          <StackLayout row="0" col="1">-->
-<!--            <Label class="list-group-item-heading">{{ channel.name }} ({{ channel.messages_number }})</Label>-->
-<!--            <Label :text="'Subscrit des de ' + channel.created_at" text-wrap="true" class="list-group-item-text" />-->
-<!--          </StackLayout>-->
-<!--          &lt;!&ndash;          // TODO -> BUTTON ACTION CAN BE MODIFIED USING SLOT. Per exemple subscriure en comptes de sortir del canal&ndash;&gt;-->
-<!--          <Button col="2" text="Sortir" @tap="$emit('leave')" />-->
-<!--        </GridLayout>-->
-<!--      </v-template>-->
-<!--    </RadListView>-->
-<!--  </StackLayout>-->
-<!--</template>-->
-
-<!--<script>-->
-<!--export default {-->
-<!--  name: 'AppUserChannels',-->
-<!--  props: {-->
-<!--    channels: {-->
-<!--      type: Array,-->
-<!--      required: true-->
-<!--    }-->
-<!--  },-->
-<!--  computed: {-->
-<!--    imagealt () {-->
-<!--      return 'https://loremflickr.com/60/60'-->
-<!--    }-->
-<!--  }-->
-<!--}-->
-<!--</script>-->
-
-<!--suppress HtmlUnknownTarget -->
 <template>
   <StackLayout>
-    <!--    <Label class="page__content-placeholder" :text="channels" />-->
     <RadListView
-      for="channel in channels"
-      swipe-actions="true"
-      @itemTap="$emit('selected',channel)"
+      ref="listView"
+      :items="channels"
+      @itemTap="onItemTap"
+      :swipe-actions="false"
+      :pull-to-refresh="true"
+      @pullToRefreshInitiated="onPullToRefreshInitiated"
     >
       <v-template>
-        <GridLayout rows="auto" columns="auto, *, auto">
-          <Image row="0" col="0" :src="imagealt" class="thumb img-rounded m-l-10" />
-          <StackLayout row="0" col="1">
-            <Label class="list-group-item-heading">{{ channel.name }} ({{ channel.messages_number }})</Label>
-            <Label :text="'Subscrit des de ' + channel.created_at" text-wrap="true" class="list-group-item-text" />
-          </StackLayout>
-          <Button col="2" text="Sortir" @tap="$emit('leave', channel)" />
-        </GridLayout>
+        <app-channel-card :channel="item" @leaved="$emit('leaved', $event)"></app-channel-card>
       </v-template>
     </RadListView>
   </StackLayout>
 </template>
 
 <script>
+import AppChannelCard from './AppChannelCard'
 export default {
   name: 'AppUserChannels',
+  components: {
+    'app-channel-card': AppChannelCard
+  },
   props: {
     channels: {
       type: Array,
       required: true
     }
   },
-  computed: {
-    imagealt () {
-      return 'https://loremflickr.com/60/60'
+  methods: {
+    onSwipeStarted () {
+      confirm('dasdas').then(() => {
+        console.log('sips')
+      }, () => {
+        console.log('nope')
+      })
+    },
+    async onPullToRefreshInitiated ({ object }) {
+      await this.refresh()
+      object.notifyPullToRefreshFinished()
+    },
+    refresh () {
+      console.log('refresh')
+    },
+    onItemTap (event) {
+      this.$emit('selected', event.item)
     }
   }
 }
 </script>
+<style>
+.card {
+  border: 1px solid black;
+}
+</style>

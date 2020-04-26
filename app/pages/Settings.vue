@@ -1,3 +1,54 @@
+<!--<template>-->
+<!--  <PageLayout title="Settings" name="Settings">-->
+<!--    <ScrollView>-->
+<!--      <StackLayout>-->
+<!--        <GridLayout col="*, auto">-->
+<!--          <Label class="item-text" col="0" verticalAlignment="center" text="Dark Mode"></Label>-->
+<!--          <Switch col="1" v-model="darkmode"></Switch>-->
+<!--        </GridLayout>-->
+<!--      </StackLayout>-->
+<!--    </ScrollView>-->
+<!--  </PageLayout>-->
+<!--</template>-->
+
+<!--<script>-->
+<!--import Theme from '@nativescript/theme'-->
+<!--import SelectedPageService from '../shared/selected-page-service'-->
+<!--import * as utils from '~/shared/utils'-->
+
+<!--export default {-->
+<!--  computed: {-->
+<!--    message () {-->
+<!--      return '&lt;!&ndash; Page content goes here &ndash;&gt;'-->
+<!--    }-->
+<!--  },-->
+<!--  data () {-->
+<!--    return {-->
+<!--      darkmode: true-->
+<!--    }-->
+<!--  },-->
+<!--  mounted () {-->
+<!--    SelectedPageService.getInstance().updateSelectedPage('Settings')-->
+<!--  },-->
+<!--  watch: {-->
+<!--    darkmode: () => {-->
+<!--      Theme.toggleMode()-->
+<!--    }-->
+<!--  },-->
+<!--  methods: {-->
+<!--    onDrawerButtonTap () {-->
+<!--      utils.showDrawer()-->
+<!--    }-->
+<!--  }-->
+<!--}-->
+<!--</script>-->
+
+<!--<style scoped lang="scss">-->
+<!--.item-text {-->
+<!--  margin-left: 50;-->
+<!--  font-size: 17;-->
+<!--}-->
+<!--</style>-->
 <template>
   <PageLayout title="Settings" name="Settings">
     <GridLayout rows="auto, *" class="nt-drawer__content sep">
@@ -99,7 +150,8 @@ export default {
 <style>
   .sep {
     margin: 25px 50px 75px;
-  },
+  }
+
   .separator {
     margin-bottom: 30px;
   }

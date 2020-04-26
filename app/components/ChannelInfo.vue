@@ -5,7 +5,7 @@
 <script>
 import { SnackBar } from 'nativescript-material-snackbar'
 import * as dialogs from 'tns-core-modules/ui/dialogs'
-import Home from '../page/Home'
+import Home from '../pages/Home'
 import * as actions from '../store/action-types'
 import AppChannelInfo from './AppChannelInfo'
 

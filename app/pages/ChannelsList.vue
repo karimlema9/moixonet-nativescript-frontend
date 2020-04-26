@@ -8,31 +8,42 @@
         <Button text="snackbar 1" @tap="showSimpleSnackbar" />
         <Button text="snackbar 2" @tap="showActionSnackbar" />
         <Button text="snackbar 3" @tap="showColorfulSnackbar" />
-        <Label @swipe="unsubscribe"> Loading: {{ loading ? 'True': 'False' }}</Label>
+        <Label> Loading: {{ loading ? 'True': 'False' }}</Label>
         <RadListView
           ref="listView"
           for="channel in channels"
-          :swipe-actions="true"
-          :pull-to-refresh="true"
+          :swipeActions="true"
+          :pullToRefresh="true"
           @itemTap="onItemTap"
           @itemSwipeProgressStarted="onSwipeStarted"
           @pullToRefreshInitiated="onPullToRefreshInitiated"
         >
           <v-template>
-            <GridLayout rows="auto" columns="auto, *, auto">
-              <Image row="0" col="0" :src="getImageUrl(channel)" class="thumb img-rounded m-l-10" />
-              <StackLayout row="0" col="1">
-                <Label class="list-group-item-heading">{{ channel.name }} ({{ channel.messages_number }})</Label>
-                <Label :text="'Subscrit des de ' + channel.formatted_created_at_diff" text-wrap="true" class="list-group-item-text" />
-              </StackLayout>
-              <!--          // TODO -> BUTTON ACTION CAN BE MODIFIED USING SLOT. Per exemple subscriure en comptes de sortir del canal-->
-              <Button col="2" text="Sortir" @tap="$emit('leave')" />
-            </GridLayout>
+            <StackLayout class="item p-t-10" orientation="vertical">
+              <Label class="nameLabel">{{ channel.name }}</Label>
+            </StackLayout>
           </v-template>
 
           <v-template name="itemswipe">
             <GridLayout columns="auto, *, auto" background-color="White">
-              <Label />
+              <StackLayout
+                id="mark-view"
+                col="0"
+                class="swipe-item left"
+                orientation="horizontal"
+                @tap="onLeftSwipeClick"
+              >
+                <Label text="mark" vertical-alignment="center" horizontal-alignment="center" />
+              </StackLayout>
+              <StackLayout
+                id="delete-view"
+                col="2"
+                class="swipe-item right"
+                orientation="horizontal"
+                @tap="onRightSwipeClick"
+              >
+                <Label text="delete" vertical-alignment="center" horizontal-alignment="center" />
+              </StackLayout>
             </GridLayout>
           </v-template>
         </RadListView>
@@ -48,61 +59,31 @@
 <script>
 import { SnackBar } from 'nativescript-material-snackbar'
 import SelectedPageService from '../shared/selected-page-service'
-// import channelsFixture from '../../e2e/fixtures/channels'
 import * as mutations from '../store/mutation-types'
-import api from '../store/api/channelsPublished'
-import { baseUrl } from '../plugins/axios'
+import * as actions from '../store/action-types'
 import * as utils from '~/shared/utils'
 
 const snackbar = new SnackBar()
 
 export default {
   name: 'ChannelsList',
-  data () {
-    return {
-      // channels: channelsFixture
-      channels: []
-    }
+  mounted () {
+    SelectedPageService.getInstance().updateSelectedPage('ChannelsList')
   },
   computed: {
     loading () {
       return this.$store.getters['axios/loading']
-      // return this.$store.getters['channels/list']
+    },
+    channels () {
+      return this.$store.getters['channels/list']
     }
   },
-  mounted () {
-    SelectedPageService.getInstance().updateSelectedPage('ChannelsList')
-  },
-  async created () {
-    await this.refresh()
-  },
   methods: {
-    getImageUrl (channel) {
-      const url = baseUrl + '/channels/published/' + channel.id + '/image'
-      console.log(url)
-      return url
+    onDrawerButtonTap () {
+      utils.showDrawer()
     },
     onItemTap () {
-      console.log('########## HEY!!!!!!!!!!!')
-    },
-    onSwipeStarted () {
-      console.log('********************************************************* Swipe started')
-      confirm('Esteu segurs que voleu sortir del canal?')
-        .then((result) => {
-          if (result) {
-            console.log('TODO SORTIR')
-            return
-          }
-          console.log('CANCEL!')
-        })
-    },
-    async onPullToRefreshInitiated ({ object }) {
-      console.log('!!!!!!!!!!!!!!!!!!!!!!!!!!!! Pulling...')
-      await this.refresh()
-      object.notifyPullToRefreshFinished()
-    },
-    unsubscribe () {
-      console.log('TODO UNSUBSCRIBE!!!')
+      console.log('ITEM TAP!')
     },
     unload () {
       this.$store.commit('axios/' + mutations.SET, { key: 'loading', value: false })
@@ -134,22 +115,23 @@ export default {
         })
         .then(result => console.log('Action Snackbar:', result))
     },
-    onDrawerButtonTap () {
-      utils.showDrawer()
-    },
     async refresh () {
-      console.log('REFRESHING!')
-      // this.loading = true
-      // try {
-      //   const result = await this.$axios.get('/channels')
-      //   this.channels = result.data
-      // } catch (error) {
-      //   // this.$snackbar.showError(error)
-      // }
-      // this.loading = false
-      // const result = await this.$axios.get('/channels')
-      const result = await api.index()
-      this.channels = result.data
+      try {
+        await this.$store.dispatch('channels/' + actions.CHANNELS_INDEX)
+      } catch (error) {
+        console.log(error)
+      }
+    },
+    onSwipeStarted () {
+      confirm('dasdas').then(() => {
+        console.log('sips')
+      }, () => {
+        console.log('nope')
+      })
+    },
+    async onPullToRefreshInitiated ({ object }) {
+      await this.refresh()
+      object.notifyPullToRefreshFinished()
     }
   }
 }

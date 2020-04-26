@@ -1,0 +1,15 @@
+tns device
+tns run
+tns run --device 1|2|3|...
+tns build
+tns install
+npm run build
+/home/alumne/android/sdk/tools/emulator -avd Emulator-Api29-Google
+
+https://whatwebcando.today/
+nativescript i nuxt frontend
+- Botó vibrate | Persmisos d'android
+https://www.bazzite.com/es/docs/nativescript-vibrate/
+-bateria
+- online state
+

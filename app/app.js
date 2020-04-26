@@ -6,7 +6,7 @@ import RadListView from 'nativescript-ui-listview/vue'
 import { TNSFontIcon, fonticon } from 'nativescript-fonticon'
 import store from './store'
 import App from './components/App'
-import Home from './page/Home'
+import Home from './pages/Home'
 import DrawerContent from './components/DrawerContent'
 import eventBus from './plugins/eventBus'
 import axios from './plugins/axios'
@@ -42,6 +42,16 @@ Vue.config.silent = (TNS_ENV === 'production')
 Vue.registerElement(
   'Fab',
   () => require('nativescript-floatingactionbutton').Fab
+)
+
+Vue.registerElement(
+  'CardView',
+  () => require('nativescript-cardview').CardView
+)
+
+Vue.registerElement(
+  'RadCalendar',
+  () => require('nativescript-ui-calendar').RadCalendar
 )
 
 global.vue = new Vue({

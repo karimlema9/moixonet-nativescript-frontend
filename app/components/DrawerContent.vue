@@ -11,46 +11,31 @@
     </StackLayout>
     <ScrollView row="1" class="nt-drawer__body">
       <StackLayout>
-        <GridLayout
-          automation-text="nav_link_home"
-          columns="auto, *"
-          :class="'nt-drawer__list-item' + (selectedPage === 'Home' ? ' -selected': '')"
-          @tap="onNavigationItemTap(Home)"
-        >
+        <GridLayout automationText="nav_link_home" columns="auto, *" :class="'nt-drawer__list-item' + (selectedPage === 'Home' ? ' -selected': '')" @tap="onNavigationItemTap(Home)">
           <Label col="0" text.decode="&#xf015;" class="nt-icon fas" />
           <Label col="1" text="Home" class="p-r-10" />
         </GridLayout>
 
-        <GridLayout
-          automation-text="nav_link_deviceInfo"
-          columns="auto, *"
-          :class="'nt-drawer__list-item' + (selectedPage === 'DeviceInfo' ? ' -selected': '')"
-          @tap="onNavigationItemTap(DeviceInfo)"
-        >
-          <Label col="0" text.decode="&#xf146;" class="nt-icon fas" />
-          <Label col="1" text="DeviceInfo" class="p-r-10" />
-        </GridLayout>
-
-        <GridLayout
-          automation-text="nav_link_search"
-          columns="auto, *"
-          :class="'nt-drawer__list-item' + (selectedPage === 'Search' ? ' -selected': '')"
-          @tap="onNavigationItemTap(Search)"
-        >
+        <GridLayout automationText="nav_link_search" columns="auto, *" :class="'nt-drawer__list-item' + (selectedPage === 'NewChannel' ? ' -selected': '')" @tap="onNavigationItemTap(NewChannel)">
           <Label col="0" text.decode="&#xf002;" class="nt-icon fas" />
           <Label col="1" text="Search" class="p-r-10" />
         </GridLayout>
 
+        <GridLayout automationText="nav_link_proves" columns="auto, *" :class="'nt-drawer__list-item' + (selectedPage === 'TestPage' ? ' -selected': '')" @tap="onNavigationItemTap(TestPage)">
+          <Label col="0" text.decode="&#xf005;" class="nt-icon fas" />
+          <Label col="1" text="Device Info" class="p-r-10" />
+        </GridLayout>
+
         <StackLayout class="hr" />
 
-        <GridLayout
-          automation-text="nav_link_settings"
-          columns="auto, *"
-          :class="'nt-drawer__list-item' + (selectedPage === 'Settings' ? ' -selected': '')"
-          @tap="onNavigationItemTap(Settings)"
-        >
+        <GridLayout automationText="nav_link_settings" columns="auto, *" :class="'nt-drawer__list-item' + (selectedPage === 'Settings' ? ' -selected': '')" @tap="onNavigationItemTap(Settings)">
           <Label col="0" text.decode="&#xf013;" class="nt-icon fas" />
           <Label col="1" text="Settings" class="p-r-10" />
+        </GridLayout>
+
+        <GridLayout v-if="loggedIn && user !==null" automationText="nav_logout" columns="auto, *" class="nt-drawer__list-item" @tap="logout()">
+          <Label col="0" text.decode="&#xf013;" class="nt-icon fas" />
+          <Label col="1" text="Logout" class="p-r-10" />
         </GridLayout>
       </StackLayout>
     </ScrollView>
@@ -60,35 +45,32 @@
 <script>
 /* eslint-disable vue/no-unused-components */
 
-// import { mapGetters } from 'vuex'
-import Home from '../page/Home'
-import Browse from '../page/Browse'
-import DeviceInfo from "../page/DeviceInfo";
-import Featured from '../page/Featured'
-import Search from '../page/Search'
-import Settings from '../page/Settings'
-import ChannelsList from '../page/ChannelsList'
-import ChannelDetails from '../page/ChannelDetails'
-import Channel from '../page/Channel'
-import AutocompleteEx from '../page/AutocompleteEx'
-import getter from '../store/modules/auth/getters'
+import * as dialogs from 'tns-core-modules/ui/dialogs'
+import url from '@/utils/url'
+import Home from '../pages/Home'
+import Settings from '../pages/Settings'
+import ChannelsList from '../pages/ChannelsList'
+import NewChannel from '../pages/NewChannel'
+import TestPage from '../pages/TestPage'
+import * as mutations from '../store/mutation-types'
 import * as utils from '~/shared/utils'
 import SelectedPageService from '~/shared/selected-page-service'
-import url from '@/utils/url'
 
 export default {
   components: {
     Home,
-    DeviceInfo,
-    Search,
-    Settings
+    Settings,
+    TestPage,
+    NewChannel,
+    ChannelsList
   },
   data () {
     return {
       Home,
-      DeviceInfo,
-      Search,
       Settings,
+      TestPage,
+      NewChannel,
+      ChannelsList,
       selectedPage: ''
     }
   },
@@ -101,11 +83,6 @@ export default {
     }
   },
   mounted () {
-    console.log(this.$axios)
-    // console.log(this)
-    // console.log(this.$store)
-    console.log(this.$store.state.auth.loggedIn)
-    console.log('LoggedIn:')
     SelectedPageService.getInstance().selectedPage$
       .subscribe((selectedPage) => { this.selectedPage = selectedPage })
   },
@@ -117,49 +94,45 @@ export default {
       utils.closeDrawer()
     },
     login () {
-      console.log('TODO LOGIN')
-      const dialogs = require('tns-core-modules/ui/dialogs')
       dialogs.login({
-        title: 'Login',
-        message: 'Possa el teu e-mail i contrasenya.',
-        okButtonText: 'Enviar',
-        cancelButtonText: 'Cancela',
-        // neutralButtonText: 'Neutral button text',
-        userName: 'exemple@exemple.com',
-        password: ''
-      }).then(function (r) {
-        getter.loggedIn(true)
-        getter.user({ name: 'logged', email: r.userName })
-        console.log('Dialog result: ' + r.result + ', user: ' + r.userName + ', pwd: ' + r.password)
+        title: 'login',
+        cancelButtonText: 'cancel',
+        okButtonText: 'login',
+        userName: 'Nom Usuari',
+        password: 'Contrasenya'
+      }).then((r) => {
+        if (r.result) {
+          this.$store.commit('auth/' + mutations.SET, { key: 'loggedIn', value: true })
+          this.$store.commit('auth/' + mutations.SET, { key: 'user', value: { name: r.userName, email: r.userName } })
+        } else {
+
+        }
+      })
+    },
+    logout () {
+      dialogs.confirm({
+        title: 'Logout',
+        message: 'segur que vols tancar la sessió?',
+        okButtonText: 'Si, pesat',
+        cancelButtonText: 'Ups, m\'he equivocat jeje'
+      }).then((result) => {
+        if (result) {
+          this.$store.commit('auth/' + mutations.SET, { key: 'loggedIn', value: false })
+          this.$store.commit('auth/' + mutations.SET, { key: 'user', value: null })
+        }
       })
     },
     register () {
-      // alert('HEY QUE PAIXA!!!')
       url.open('https://moixonet.karimlema9.scool.cat/register')
-      // url.open('http://www.google.com')
-      // utils.openUrl('http://moixonet-backend.test/register')
-      // function pageLoaded (args) {
-      //   const page = args.object
-      //   page.bindingContext = { }
-      // }
-      //
-      // exports.pageLoaded = pageLoaded
-      //
-      // exports.launch = function (url) {
-      //   utils.openUrl(url)
-      // }
+      // url.open('https://moixonet.jotaela.scool.cat/register')
     }
   }
 }
 </script>
 
 <style scoped lang="scss">
-  // Start custom common variables
-  @import '~@nativescript/theme/scss/variables/ruby';
-  // End custom common variables
 
-  // Custom styles
-  label{
-    font-size: 19
+  .nt-drawer__header {
+    background-color: const(blue);
   }
 </style>

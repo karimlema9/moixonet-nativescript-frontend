@@ -1,6 +1,6 @@
 import * as mutations from '../../mutation-types'
 import * as actions from '../../action-types'
-import api from '../../api/channelsPublished'
+import api from '../../../api/publishedChannels'
 
 export default {
   async [actions.PUBLISHED_CHANNELS_INDEX] (context) {

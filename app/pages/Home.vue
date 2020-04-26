@@ -25,7 +25,7 @@ import SelectedPageService from '../shared/selected-page-service'
 import UserChannels from '../components/UserChannels'
 import * as actions from '../store/action-types'
 import NewChannel from './NewChannel'
-// import * as utils from '~/shared/utils'
+import * as utils from '~/shared/utils'
 
 export default {
 
@@ -60,6 +60,7 @@ export default {
       } catch (error) {
         console.log(error)
       }
+      // this.$store.commit('axios/' + mutations.SET, { key: 'loading', value: false })
     }
   }
 }
