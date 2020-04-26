@@ -7,7 +7,7 @@
         <v-template>
           <app-channel-card :channel="foundChannel">
             <template v-slot:default="props">
-              <Button col="2" text="Info" @tap="info(props.channel)" />
+              <Button col="2" text="Add" @tap="info(props.channel)" />
             </template>
           </app-channel-card>
         </v-template>

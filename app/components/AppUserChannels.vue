@@ -30,10 +30,10 @@ export default {
   },
   methods: {
     onSwipeStarted () {
-      confirm('dasdas').then(() => {
-        console.log('sips')
+      confirm('onSwipeStarted').then(() => {
+        console.log('yes')
       }, () => {
-        console.log('nope')
+        console.log('no')
       })
     },
     async onPullToRefreshInitiated ({ object }) {

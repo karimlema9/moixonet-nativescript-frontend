@@ -37,7 +37,7 @@ export default {
         title: 'Dessubscripció',
         message: 'Segur que vols sortir d\'auqest canal?? :(',
         okButtonText: 'Sips UwU',
-        cancelButtonText: 'Sry, no tornara a passar'
+        cancelButtonText: 'Cancela'
       }).then((result) => {
         if (result) {
           this.$store.dispatch('localChannels/' + actions.LOCAL_CHANNELS_DELETE, channel)
