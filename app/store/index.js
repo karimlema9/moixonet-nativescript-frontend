@@ -3,6 +3,8 @@ import Vuex from 'vuex'
 import auth from './modules/auth'
 import channels from './modules/channels'
 import axios from './modules/axios'
+import publishedChannels from './modules/publishedChannels'
+import localChannels from './modules/localChannels'
 
 Vue.use(Vuex)
 
@@ -12,7 +14,9 @@ const store = new Vuex.Store({
   modules: {
     auth,
     channels,
-    axios
+    axios,
+    publishedChannels,
+    localChannels
   },
   strict: debug
 })

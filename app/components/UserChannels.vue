@@ -25,9 +25,6 @@ export default {
       return this.channels && this.channels.length
     },
     channels () {
-      // console.log('getters.CHANNELS: ')
-      // console.log('------------------------' + getters.CHANNELS)
-      // console.log('holaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa')
       return this.$store.getters[getters.CHANNELS]
     }
   },

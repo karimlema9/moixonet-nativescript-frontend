@@ -1,10 +1,13 @@
 import { myAxios as httpClient } from '../../plugins/axios'
 
 export default {
-  index () {
-    return httpClient.get('/published_channels')
+  index: () => {
+    return httpClient.get('published_channels')
   },
-  show (channel) {
-    return httpClient.get('/published_channels/' + channel.id)
+  show: (channel) => {
+    return httpClient.post('published_channels' + channel.id)
+  },
+  search: (text) => {
+    return httpClient.get('channels/search/' + text).then(result => result.data)
   }
 }

@@ -1,143 +1,119 @@
 <template>
-  <PageLayout title="DeviceInfo" name="DeviceInfo" class="font-weight-bold">
-    <StackLayout>
-      <StackLayout>
-        <button @tap="vibration">
-          Vibra
-        </button>
+  <PageLayout title="Device Info" name="DeviceInfo">
+    <ScrollView>
+      <StackLayout class="marge">
+        <GridLayout columns="*, *">
+          <Button class="item-text" col="0" vertical-alignment="center" text="Vibrar" @tap="vibrate" />
+        </GridLayout>
+        <StackLayout class="hr" />
+        <GridLayout columns="*, auto">
+          <Label class="item-text" col="0" vertical-alignment="center" text="Tipus de connexió" />
+          <Label class="item-text" col="1" vertical-alignment="center" :text="connectionTypeString" />
+        </GridLayout>
+        <StackLayout class="hr" />
+        <GridLayout columns="*, auto">
+          <Label class="item-text" col="0" vertical-alignment="center" text="Bateria" />
+          <Label class="item-text" col="1" vertical-alignment="center" :text="battery" />
+        </GridLayout>
+        <StackLayout class="hr" />
+        <GridLayout columns="*, auto">
+          <Label class="item-text" col="0" vertical-alignment="center" text="Sistema Operatiu" />
+          <Label class="item-text" col="1" vertical-alignment="center" :text="os" />
+        </GridLayout>
+        <StackLayout class="hr" />
+        <GridLayout columns="*, auto">
+          <Label class="item-text" col="0" vertical-alignment="center" text="Geolocalització" />
+          <Label class="item-text" col="1" vertical-alignment="center" :text="geoloaction" text-wrap="true" />
+        </GridLayout>
       </StackLayout>
-      <StackLayout>
-        <button @tap="velocity">
-          Tipus de xarxa i Velocitat
-        </button>
-      </StackLayout>
-      <StackLayout>
-        <button @tap="batery">
-          Bateria
-        </button>
-        <label>asd2 {{ ram() }} </label>
-      </StackLayout>
-      <StackLayout>
-        <button @tap="ram">
-          Memoria RAM
-        </button>
-      </StackLayout>
-      <StackLayout>
-        <button @tap="connection">
-          Tipus de connexió
-        </button>
-      </StackLayout>
-      <!--      <StackLayout>-->
-      <Fab
-        row="1"
-        icon="res://baseline_add_white_24"
-        ripple-color="#f1f1f1"
-        class="fab-button"
-        @tap="share"
-      />
-      <!--      </StackLayout>-->
-    </StackLayout>
+    </ScrollView>
   </PageLayout>
 </template>
 
 <script>
-// import { connectionType, getConnectionType, startMonitoring, stopMonitoring } from 'tns-core-modules/connectivity'
 import { Vibrate } from 'nativescript-vibrate'
-const power = require('nativescript-powerinfo')
+import { Accuracy } from 'tns-core-modules/ui/enums'
+import * as geolocation from 'nativescript-geolocation'
+import * as applicationModule from 'tns-core-modules/application'
+import power from 'nativescript-powerinfo'
+import { connectionType, getConnectionType, startMonitoring, stopMonitoring } from 'tns-core-modules/connectivity'
+import SelectedPageService from '../shared/selected-page-service'
+
 const vibrator = new Vibrate()
+
 export default {
   name: 'DeviceInfo',
   data () {
     return {
-      batbat: null
+      connectionType: getConnectionType(),
+      connectionTypeString: '',
+      battery: 'Es pot veure a la consola, nose com mostraro per aqui.',
+      os: '',
+      geoloaction: ''
     }
   },
-  methods: {
-    vibration () {
-      vibrator.vibrate(200)
-    },
-    share () {
-      console.log('-------------------------izzan')
-    },
-    batery () {
-      this.batbat = power.startPowerUpdates(function (Info) {
-        console.log('Porcentaje de bateria: ' + Info.percent + '%')
-      })
-    },
-    ram () {
-      console.log('asddddd ' + this.batbat)
+  mounted () {
+    SelectedPageService.getInstance().updateSelectedPage('DeviceInfo')
+    // tipus de connexió
+    this.connectionTypeResponse(this.type)
+    startMonitoring((newConnectionType) => {
+      this.connectionTypeResponse(newConnectionType)
+    })
+    power.startPowerUpdates(function ({ percent }) {
+      console.log('Porcentaje de bateria: : ' + percent + '%')
+    })
+    if (applicationModule.android) {
+      this.os = 'Android'
+    } else if (applicationModule.ios) {
+      this.os = 'IOS'
     }
-
+    geolocation.enableLocationRequest()
+    geolocation.getCurrentLocation({ desiredAccuracy: Accuracy.high, maximumAge: 5000, timeout: 20000 }).then((response) => {
+      this.geoloaction = 'latitude: ' + response.latitude +
+      '\nlongitude: ' + response.longitude +
+      '\naltitude: ' + response.altitude +
+      '\nhorizontalAccuracy: ' + response.horizontalAccuracy +
+      '\nverticalAccuracy: ' + response.verticalAccuracy
+    })
+  },
+  destroyed () {
+    // tipus de conexió
+    stopMonitoring()
+    // Bateria
+    power.stopPowerUpdates()
+    // New
+  },
+  methods: {
+    connectionTypeResponse (type) {
+      switch (type) {
+        case connectionType.none:
+          this.connectionTypeString = 'Sin conexion!'
+          break
+        case connectionType.wifi:
+          this.connectionTypeString = 'Conexion WiFI'
+          break
+        case connectionType.mobile:
+          this.connectionTypeString = 'Conexion datos'
+          break
+        case connectionType.ethernet:
+          this.connectionTypeString = 'Conexion Ethernet'
+          break
+        case connectionType.bluetooth:
+          this.connectionTypeString = 'Conexion Bluetooth'
+          break
+        default:
+          break
+      }
+    },
+    vibrate () {
+      vibrator.vibrate(200)
+    }
   }
-  // export function onNavigatedTo(args) {
-  //   const page = args.object;
-  //   let connectionTypeString;
-  //
-  //   const type = getConnectionType();
-  //
-  //   switch (type) {
-  //     case connectionType.none:
-  //       console.log("No connection");
-  //       connectionTypeString = "No Internet connectivity!";
-  //       break;
-  //     case connectionType.wifi:
-  //       console.log("WiFi connection");
-  //       connectionTypeString = "WiFI connectivity!";
-  //       break;
-  //     case connectionType.mobile:
-  //       console.log("Mobile connection");
-  //       connectionTypeString = "Mobile connectivity!";
-  //       break;
-  //     case connectionType.ethernet:
-  //       console.log("Ethernet connection");
-  //       connectionTypeString = "Ethernet connectivity!";
-  //       break;
-  //     case connectionType.bluetooth:
-  //       console.log("Bluetooth connection");
-  //       connectionTypeString = "Bluetooth connectivity!";
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  //
-  //   startMonitoring((newConnectionType) => {
-  //     switch (newConnectionType) {
-  //       case connectionType.none:
-  //         console.log("Connection type changed to none.");
-  //         break;
-  //       case connectionType.wifi:
-  //         console.log("Connection type changed to WiFi.");
-  //         break;
-  //       case connectionType.mobile:
-  //         console.log("Connection type changed to mobile.");
-  //         break;
-  //       case connectionType.ethernet:
-  //         console.log("Connection type changed to ethernet.");
-  //         break;
-  //       case connectionType.bluetooth:
-  //         console.log("Connection type changed to bluetooth.");
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //   });
-  //
-  //   // Stoping the connection monitoring
-  //   stopMonitoring();
-  //
-  //   page.bindingContext = { connectionType: connectionTypeString };
-  // }
 }
 </script>
 
 <style scoped lang="scss">
-  // Custom styles
-  .fab-button {
-    height: 70;
-    width: 70; /// this is required on iOS - Android does not require width so you might need to adjust styles
-    margin: 15;
-    background-color: #ff4081;
-    horizontal-align: right;
-    vertical-align: bottom;
+  .marge *{
+    margin: 10px;
   }
 </style>
